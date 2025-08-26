@@ -1,1 +1,1 @@
-# fintech-core
+This is the core project readme. we are adding more of this content to make sure the repo indexes
