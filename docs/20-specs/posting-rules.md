@@ -1,122 +1,95 @@
-# Posting Rules
+# Posting Rules (Expanded)
 
-Posting rules define how domain events are transformed into double-entry ledger postings.
-
----
-
-## 🎯 Purpose
-- Ensure **deterministic accounting** for every event.  
-- Encode **business logic** (fees, FX, reversals).  
-- Provide a testable mapping for CI.
+Defines how Storo translates transfer lifecycle events into **double‑entry ledger postings**.  
+This is the authoritative mapping for `ledger-service`.
 
 ---
 
-## 🔀 Event → Posting Map
-
-### `transfers.settled`
-Debit: Payer  
-Credit: Merchant  
-Credit: Fees (if applicable)  
-
-### `transfers.returned`
-Reverse prior settlement postings (contra entries).  
-
-### `transfers.accepted` (auth rails only)
-Debit: UserAuthHold (memo)  
-Credit: LiquidityPending (memo)  
+## Principles
+- Every posting set must **balance** (sum debits = sum credits).  
+- Postings are **append‑only**; reversals are explicit.  
+- Ledger is **accrual‑based**: income/expenses recognized when earned, not when paid.  
+- Use **normal balances** from chart‑of‑accounts.md.  
 
 ---
 
-## 💱 Multi-Currency Rules
-- Settlement uses **fxQuote** at time of event.  
-- Residual differences → `FX_PNL`.  
-- Rounding differences → `FX_PNL_ROUNDING`.  
+## Event → Posting Rules
+
+### 1. `transfers.accepted` (AUTH / reservation)
+- If rail supports **authorization** (card‑like), create pending/memo postings:
+
+| Debit (Dr) | Credit (Cr) | Notes |
+|------------|-------------|-------|
+| Rail Settlement Pending | User / Payer | Off‑balance memo (not cash movement yet) |
 
 ---
 
-## 📐 Example Table
+### 2. `transfers.settled` (funds final)
 
-| Event                | Debit          | Credit        | Amount  | Notes         |
-|----------------------|----------------|---------------|---------|---------------|
-| transfers.settled    | USER           | MERCHANT      | 10000   | Net to merchant |
-|                      |                | FEES          | 100     | Fee captured |
-| transfers.returned   | MERCHANT       | USER          | 10000   | Contra |
-|                      | FEES           | USER          | 100     | Fee reversal |
+#### Case: PUSH payment (payer sends to payee)
+| Debit (Dr) | Credit (Cr) | Notes |
+|------------|-------------|-------|
+| User / Payer | Merchant / Payee | Principal transfer |
+| Merchant / Payee | Fees Revenue | If fee charged (separate leg) |
+| FX Loss | Merchant / Payee | If FX conversion loss applied |
+| Merchant / Payee | FX Gain | If FX conversion gain applied |
 
----
-
-## 🧪 Test Fixtures
-- Deterministic fixtures in `/testdata/ledger/`.  
-- CI asserts byte-for-byte journal correctness.
-
----
-# Posting Rules (Storo)
-
-Mapping of domain events → ledger postings.  
-Ensures double-entry and accrual accounting discipline.
+#### Case: PULL payment (merchant pulls funds)
+| Debit (Dr) | Credit (Cr) | Notes |
+|------------|-------------|-------|
+| User / Payer | Merchant / Payee | Principal |
+| Merchant / Payee | Fees Revenue | Optional fee leg |
 
 ---
 
-## Transfers
+### 3. `transfers.returned` (rail return / chargeback)
 
-**Event: transfers.accepted (AUTH)**  
-- Create memo postings (off-balance).  
-- No balance impact until SETTLED.
-
-**Event: transfers.settled (PUSH)**  
-- Debit: Payer (User Balance)  
-- Credit: Merchant Payable (Liability)  
-- Debit: Merchant Payable  
-- Credit: Liquidity (Asset)  
-
-**Event: transfers.settled (PULL)**  
-- Debit: Liquidity (Asset)  
-- Credit: User Balance (Liability)
-
-**Event: transfers.returned**  
-- Reverse prior postings with contra entries.  
-- Debit/Credit Chargebacks Payable as needed.  
+| Debit (Dr) | Credit (Cr) | Notes |
+|------------|-------------|-------|
+| Merchant / Payee | User / Payer | Reverse principal |
+| Fees Expense | Merchant / Payee | Return fees absorbed |
 
 ---
 
-## Fees
-
-**Transaction Fee**  
-- Debit: User Balance (Liability)  
-- Credit: Transaction Fees Earned (Revenue)
-
-**FX Spread**  
-- Debit: Liquidity (Asset)  
-- Credit: FX Spread Income (Revenue)
+### 4. `transfers.failed` (technical failure)
+- No postings (transfer never finalized).
 
 ---
 
-## Reconciliation Adjustments
+## Period Closing Entries (Ops)
 
-**Unmatched line item (temporary)**  
-- Debit: Suspense (Asset)  
-- Credit: Suspense Offset (Liability)  
-- Must be cleared before books close.  
+At end of reporting period (see closing-the-books.md):
 
----
-
-## Closing Entries
-
-**Close Revenue**  
-- Debit: Transaction Fees Earned  
-- Credit: Net Income  
-
-**Close Expenses**  
-- Debit: Net Income  
-- Credit: Processing Costs / Chargebacks Losses  
-
-**Close Net Income**  
-- Debit: Net Income  
-- Credit: Retained Earnings  
+- Close temporary **Income** and **Expense** accounts to **Retained Earnings**.  
+- Reconciliation must confirm balances vs external statements before close.  
 
 ---
 
-## Notes
-- Posting rules are immutable and versioned.  
-- Each posting must include: `transferId`, `eventId`, `occurredAt`, memo.  
+## Example Walkthrough
 
+User pays Merchant 100 ZAR via USDC rail. Fee = 2 ZAR.
+
+1. Event: `transfers.settled`
+2. Ledger postings:
+
+| Debit (Dr) | Credit (Cr) | Amount |
+|------------|-------------|--------|
+| User Account | Merchant Account | 100 |
+| Merchant Account | Fees Revenue | 2 |
+
+Merchant net = 98 ZAR. System recognized 2 ZAR as revenue.
+
+---
+
+## Exceptions
+
+- Negative balances: only Liquidity/FX/Reserve accounts allowed.  
+- Multi‑currency: FX legs must always be paired (gain or loss).  
+- Manual journal entries require dual approval and clear memo.  
+
+---
+
+## References
+
+- chart-of-accounts.md (account categories, normal balances)  
+- closing-the-books.md (period cycle)  
