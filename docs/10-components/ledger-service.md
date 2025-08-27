@@ -51,9 +51,9 @@ The **Ledger Service** is Storo’s **book of record**. It maintains double‑en
 
 **tables**
 - `accounts`  
-  - `accountId` (pk), `type` (USER|MERCHANT|LIQUIDITY|FEES|FX|SETTLEMENT|RESERVE), `tenantId?`, `currency?` (nullable if multi‑currency), `status`, `createdAt`
+  - `accountId` (pk), `type` (USER|MERCHANT|LIQUIDITY|FEES|FX|SETTLEMENT|RESERVE|NOSTRO|VOSTRO), `tenantId?`, `currency?` (nullable if multi‑currency), `status`, `createdAt`
 - `journals` *(immutable)*  
-  - `journalId` (pk), `transferId`, `eventType`, `occurredAt`, `memo`
+  - `journalId` (pk), `transferId`, `eventType`, `occurredAt`, `memo`, `exchangeControlRef?`
 - `postings` *(append‑only)*  
   - `postingId` (pk), `journalId` (fk), `debitAccountId`, `creditAccountId`, `amountMinor`, `currency`, `memo`
 - `balances` *(materialized)*  
@@ -88,6 +88,11 @@ If FX occurs (payer USD → merchant ZAR), split legs:
 - **Debit**: `LIQUIDITY` — 180000 ZAR  
 - **Credit**: `MERCHANT` — 180000 ZAR  
 - **Credit**/**Debit**: `FX_PNL` — difference from quoted vs realized
+
+> Cross‑border flows may include legs to/from `NOSTRO`/`VOSTRO` accounts to reflect settlement with external banks.
+
+### VAT on Fees (ZA)
+- When fees are vatable, split into `FEES_NET` and `FEES_VAT` credits as per `20-specs/tax-vat.md`.
 
 ### 3) Returned / Chargeback (reverse prior settled)
 Post the **exact contra** of the settlement set, preserving original currency:
@@ -219,7 +224,8 @@ sequenceDiagram
   "transferId": "tr_01HZY...",
   "eventType": "transfers.settled",
   "occurredAt": "2025-08-26T10:15:01Z",
-  "memo": "settlement zimswitch batch 8341"
+  "memo": "settlement zimswitch batch 8341",
+  "exchangeControlRef": "ec_ABC123"
 }
 ```
 

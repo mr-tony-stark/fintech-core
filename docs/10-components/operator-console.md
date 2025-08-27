@@ -48,6 +48,13 @@ sequenceDiagram
 
 ---
 
+## 🌍 Localization (i18n)
+- Supported languages: English (en), Afrikaans (af), Zulu (zu), Xhosa (xh), Sotho (st), Tswana (tn).  
+- Strategy: externalized message catalog with keys; locale switch per user.  
+- PII: ensure translations do not expose sensitive data; placeholders only.  
+
+---
+
 ## 🚨 Failure Modes
 - **Stale data** → refresh from APIs, not cached snapshots.  
 - **Unauthorized access** → enforce SSO + RBAC.  

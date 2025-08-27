@@ -30,7 +30,16 @@ The **Event model** defines the envelope and catalog of all domain events emitte
 - `occurredAt` – ISO8601 UTC timestamp.  
 - `transferId` – optional link to transfer (if relevant).  
 - `tenantId` – tenant scoping.  
-- `payload` – type-specific content.
+- `payload` – type-specific content.  
+
+**Optional enrichment (additive)**
+- `kycTier` – KYC tier for context (T0|T1|T2).  
+- `riskScore` – screening risk score (0-100).  
+- `exchangeControlRef` – reference for exchange control/BoP.  
+- `taxCode` – tax/VAT code for fee lines.  
+- `proxyType` – proxy type for PayShap (cell|email|id).  
+
+> Additive fields do not break consumers; treat unknown fields as optional.
 
 ---
 
@@ -64,6 +73,12 @@ The **Event model** defines the envelope and catalog of all domain events emitte
 - Event consumers must dedupe using `eventId`.  
 - For transfer lifecycle, `(transferId,type)` must be unique.  
 - Outbox pattern ensures atomic persistence + publish.
+
+---
+
+## 🧭 Versioning
+- Additive changes (new optional fields) require no version bump.  
+- Breaking changes introduce a new `type` version (e.g., `transfers.settled.v2`) with dual-publish during migration.
 
 ---
 

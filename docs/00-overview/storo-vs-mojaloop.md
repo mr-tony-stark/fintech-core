@@ -1,8 +1,8 @@
-# Storo Nucleus vs Mojaloop Hub — Visual Contrast
+# Storo Nucleus vs Mojaloop Hub - Visual Contrast
 
-This note shows how **Storo** is *inspired by* Mojaloop while keeping a **modular, rail‑agnostic nucleus**. Two diagrams:
+This note shows how **Storo** is *inspired by* Mojaloop while keeping a **modular, rail-agnostic nucleus**. Two diagrams:
 1) Component landscape comparison
-2) Transaction flow (Request‑to‑Pay) mapped to each architecture
+2) Transaction flow (Request-to-Pay) mapped to each architecture
 
 ---
 
@@ -10,29 +10,29 @@ This note shows how **Storo** is *inspired by* Mojaloop while keeping a **modula
 
 ```mermaid
 flowchart LR
-  subgraph S["Storo Nucleus (Modular, Rail‑Agnostic)"]
+  subgraph S["Storo Nucleus (Modular, Rail-Agnostic)"]
     direction LR
-    S1[CTS\n(Canonical Transfer Service)]
-    S2[Rail Gateways\n(EcoCash/PayShap/OPPWA/USDC)]
-    S3[Ledger Service\n(Double‑Entry)]
-    S4[Compliance\n(Screening/Lists)]
-    S5[Directory & Routing\n(ALS/Fees/Windows)]
+    S1[CTS<br/>(Canonical Transfer Service)]
+    S2[Rail Gateways<br/>(EcoCash/PayShap/OPPWA/USDC)]
+    S3[Ledger Service<br/>(Double-Entry)]
+    S4[Compliance<br/>(Screening/Lists)]
+    S5[Directory & Routing<br/>(ALS/Fees/Windows)]
     S6[Reconciliation & Returns]
     S7[Event Bus + Outbox]
     S8[Operator Console]
-    S9[Platform/Base\n(Admin/Time/Errors/IDs)]
+    S9[Platform/Base<br/>(Admin/Time/Errors/IDs)]
   end
 
   subgraph M["Mojaloop Hub (Switch + Scheme Services)"]
     direction LR
-    M1[Account Lookup Service\n(ALS / Discovery)]
-    M2[Quoting Service\n(FX / Fees Agreement)]
-    M3[Central Ledger\n(Clearing/Positions)]
-    M4[Settlement Module\n(RTGS/Net/Prefund)]
-    M5[Scheme Rules & Auth\n(PKI, Signatures, Consent)]
+    M1[Account Lookup Service<br/>(ALS / Discovery)]
+    M2[Quoting Service<br/>(FX / Fees Agreement)]
+    M3[Central Ledger<br/>(Clearing/Positions)]
+    M4[Settlement Module<br/>(RTGS/Net/Prefund)]
+    M5[Scheme Rules & Auth<br/>(PKI, Signatures, Consent)]
     M6[Fraud/Risk Hooks]
     M7[FSPIOP API Gateway]
-    M8[ILP Coordinator\n(Conditions/Fulfillment)]
+    M8[ILP Coordinator<br/>(Conditions/Fulfillment)]
   end
 
   %% Storo internals
@@ -64,7 +64,7 @@ flowchart LR
 
 ---
 
-## 2) Request‑to‑Pay (R2P) Flow — Side‑by‑Side
+## 2) Request-to-Pay (R2P) Flow — Side-by-Side
 
 ```mermaid
 sequenceDiagram
@@ -75,10 +75,10 @@ sequenceDiagram
   participant GW as Rail Gateway (e.g., EcoCash/PayShap/USDC)
   participant Ledger as Ledger Service
 
-  Note over Client,Ledger: Storo — Rail‑agnostic nucleus
+  Note over Client,Ledger: Storo — Rail-agnostic nucleus
 
   Client->>Storo: POST /transfers (payer alias, amount, rail)
-  Storo->>Dir: Resolve alias → provider/route
+  Storo->>Dir: Resolve alias -> provider/route
   Dir-->>Storo: Provider & fees/windows
   Storo->>GW: transfers.submitted.<rail>
   GW-->>Storo: transfers.accepted (prompt delivered / tx observed)
@@ -102,7 +102,7 @@ sequenceDiagram
   Note over PayerApp,Settle: Mojaloop — Shared scheme with DFSPs
 
   PayerApp->>Hub: POST /parties (discover payee alias)
-  Hub->>ALS: Lookup alias → DFSP
+  Hub->>ALS: Lookup alias -> DFSP
   ALS-->>Hub: Payee DFSP
   Hub->>PayeeApp: GET /quotes?amount,currency
   PayeeApp-->>Hub: Quote (amountIn/Out, fees, FX, ILP condition)
@@ -116,15 +116,15 @@ sequenceDiagram
 ```
 
 **Interpretation**  
-- **Storo** treats R2P as an internal orchestration; **gateways** perform the last‑mile prompt/observe/settle.  
-- **Mojaloop** formalizes **Discovery → Quote → Transfer** across **multiple DFSPs**, with **ILP** ensuring atomicity and a separate **settlement layer**.
+- **Storo** treats R2P as an internal orchestration; **gateways** perform the last-mile prompt/observe/settle.  
+- **Mojaloop** formalizes **Discovery -> Quote -> Transfer** across **multiple DFSPs**, with **ILP** ensuring atomicity and a separate **settlement layer**.
 
 ---
 
 ## When to use which ideas
 
 - Use **Storo’s modular gateways** when you must integrate diverse rails (EcoCash, PayShap, OPPWA, USDC) *and* keep a single internal ledger of record.  
-- Use **Mojaloop patterns** (FSPIOP, ILP, ISO 20022 mapping, scheme rules) to standardize cross‑institution flows and future‑proof for **regional interop**.
+- Use **Mojaloop patterns** (FSPIOP, ILP, ISO 20022 mapping, scheme rules) to standardize cross-institution flows and future-proof for **regional interop**.
 
 ---
 

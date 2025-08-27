@@ -44,9 +44,17 @@ The **data retention policy** governs how long Storo stores sensitive data and h
 
 ---
 
+## 🌍 POPIA Cross-Border Transfers (ZA)
+- Assess adequacy for destination; if inadequate, add contractual safeguards and consent where required.  
+- Maintain a register of cross-border transfers with purpose, destinations, and safeguards.  
+- Ensure processors/sub-processors contractually meet POPIA obligations.  
+- Do not include PII in event payloads unless strictly necessary; prefer references.
+
+---
+
 ## 🧭 Runbooks
 - **Retention job failure** → retry, escalate if backlog > 24h.  
 - **Legal hold** → suspend deletion for specific entities.  
-- **PII exposure incident** → trigger breach protocol immediately.
+- **PII exposure incident** → trigger breach protocol immediately.  
 
 ---

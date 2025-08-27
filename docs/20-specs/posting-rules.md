@@ -40,6 +40,14 @@ This is the authoritative mapping for `ledger-service`.
 | User / Payer | Merchant / Payee | Principal |
 | Merchant / Payee | Fees Revenue | Optional fee leg |
 
+#### Per‑rail surcharges and partner fees (netting)
+| Debit (Dr) | Credit (Cr) | Notes |
+|------------|-------------|-------|
+| Merchant / Payee | Fees Partner | Partner surcharge retained by Storo on behalf of partner |
+| Fees Partner | Partner Payable | Net settlement to partner at recon/settlement time |
+
+> Netting entries reduce operational payouts; settle partner payable on statement reconciliation.
+
 ---
 
 ### 3. `transfers.returned` (rail return / chargeback)
@@ -93,3 +101,4 @@ Merchant net = 98 ZAR. System recognized 2 ZAR as revenue.
 
 - chart-of-accounts.md (account categories, normal balances)  
 - closing-the-books.md (period cycle)  
+- tax-vat.md (VAT on fees)  

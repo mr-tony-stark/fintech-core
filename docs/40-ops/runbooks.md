@@ -87,3 +87,42 @@ Operational procedures for Storo nucleus components. Keep these pragmatic and up
 - Scale consumers horizontally.  
 - Increase partitions if saturated.  
 - Enable backpressure on producers (CTS) temporarily.
+
+---
+
+## Load-shedding resilience (ZA)
+
+**Symptoms**  
+- Increased timeouts/latency during scheduled power cuts; spikes in retries/DLQ.  
+
+**Checks**  
+1. Gateway submit/confirm latency; retry counters.  
+2. Outbox backlog and consumer lag around shedding windows.  
+3. Infrastructure node availability in affected regions.  
+
+**Actions**  
+- Increase backoff and retry windows temporarily; enable circuit breakers.  
+- Prefer idempotent replays after power restoration.  
+- Throttle CTS create rate for impacted tenants.  
+- Schedule maintenance/ingests away from shedding windows.  
+
+**Alerts**  
+- Alert on publish lag, retry spikes, and failure-rate thresholds during known windows.  
+
+---
+
+## POPIA DSAR (Data Subject Access/Erasure)
+
+**Scope**  
+- Handle access/correction/erasure requests while honoring legal holds and retention.
+
+**Steps**  
+1. Verify requestor identity and authority.  
+2. Locate records across services (CTS, Ledger, Compliance, Recon, blobs).  
+3. Produce access report with redactions; log disclosure.  
+4. For erasure: apply anonymization where permitted; record legal holds where applicable.  
+5. Update DSAR register with timestamps and outcome.  
+
+**Controls**  
+- Do not delete immutable audit/journal data; apply irreversible hashing where allowed.  
+- Approval workflow for erasure.

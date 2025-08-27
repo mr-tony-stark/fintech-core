@@ -17,7 +17,9 @@ The **Directory & Routing Service** is Storo’s authoritative source of rails m
 - Expose routing lookups (`/routes?bin=...`) for CTS.  
 - Apply per-rail/per-tenant fees and cutoffs.  
 - Circuit-breaker fallback to cached versions.  
-- Version data for audit and rollback.
+- Version data for audit and rollback.  
+- Maintain ZA bank codes and PayShap proxy rules (cell/email/id) for resolution.  
+- Publish settlement calendars (ZA/ZW) and cutoffs for consumers.
 
 ---
 
@@ -30,6 +32,9 @@ The **Directory & Routing Service** is Storo’s authoritative source of rails m
 - `GET /institutions/:id`  
   → `{ id, name, rail, endpoint, fees, windows }`
 
+- `GET /calendars/:region`  
+  → `{ region: "ZA"|"ZW", holidays: [...], timezone }`
+
 ### Events (emit)
 - `directory.version.updated`  
   - `{ versionId, effectiveFrom, source, checksum }`
@@ -41,13 +46,15 @@ The **Directory & Routing Service** is Storo’s authoritative source of rails m
 - `bins` (bin, institutionId, effectiveFrom/to)  
 - `fees` (tenantId, rail, feeType, value, effectiveFrom/to)  
 - `windows` (rail, cutoffTimes, timezone)  
+- `bank_codes` (ZA code, institutionId)  
+- `proxy_rules` (type, constraints, effectiveFrom/to)  
+- `calendars` (region, date, description)  
 - `directory_versions`  
 - `outbox_directory`  
 
 ---
 
 ## 📐 Sequence
-
 ```mermaid
 sequenceDiagram
   participant CTS

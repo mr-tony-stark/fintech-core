@@ -20,6 +20,8 @@ The **Compliance Screening Service** protects Storo by screening entities (payer
 - Emit alerts when existing entities match new list entries.  
 - Store results with versioned list references for audit.
 
+> Local sources: SA PEPs/adverse media (vendor feeds), ZW FIU advisories; define update SLAs and checksum validation.
+
 ---
 
 ## 🔌 Interfaces

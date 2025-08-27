@@ -48,6 +48,13 @@ The **Reconciliation & Returns Service** ensures Storo’s books stay aligned wi
 
 ---
 
+## 📄 File Specifications (per rail)
+- EFT (Bankserv): settlement and return record layouts, cutoffs, T+N windows.
+- PayShap: real-time exceptions/returns mapping to `StatementLine`.
+- ZIPIT/RTGS: daily statements and chargeback reason codes.
+
+---
+
 ## 📐 Sequence
 
 ```mermaid

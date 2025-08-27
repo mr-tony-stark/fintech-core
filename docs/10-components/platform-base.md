@@ -19,6 +19,8 @@ The **Platform/Base Library** provides shared utilities for all Storo services, 
 - Offer ID generation and request tracing.  
 - Embed DB migrations in service binaries.  
 
+> Ship canonical holiday calendars for ZA/ZW and banking-day helpers (`Africa/Johannesburg`, `Africa/Harare`).
+
 ---
 
 ## 🔌 Interfaces

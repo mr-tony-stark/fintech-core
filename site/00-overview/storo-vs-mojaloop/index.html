@@ -24,7 +24,7 @@
     
     
       
-        <title>Storo Nucleus vs Mojaloop Hub — Visual Contrast - Storo Docs</title>
+        <title>Storo Nucleus vs Mojaloop Hub - Visual Contrast - Storo Docs</title>
       
     
     
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Storo Nucleus vs Mojaloop Hub — Visual Contrast
+              Storo Nucleus vs Mojaloop Hub - Visual Contrast
             
           </span>
         </div>
@@ -593,7 +593,7 @@
   
   
   <span class="md-ellipsis">
-    Storo Nucleus vs Mojaloop Hub — Visual Contrast
+    Storo Nucleus vs Mojaloop Hub - Visual Contrast
     
   </span>
   
@@ -606,7 +606,7 @@
   
   
   <span class="md-ellipsis">
-    Storo Nucleus vs Mojaloop Hub — Visual Contrast
+    Storo Nucleus vs Mojaloop Hub - Visual Contrast
     
   </span>
   
@@ -638,9 +638,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-requesttopay-r2p-flow-sidebyside" class="md-nav__link">
+  <a href="#2-request-to-pay-r2p-flow-side-by-side" class="md-nav__link">
     <span class="md-ellipsis">
-      2) Request‑to‑Pay (R2P) Flow — Side‑by‑Side
+      2) Request-to-Pay (R2P) Flow — Side-by-Side
     </span>
   </a>
   
@@ -1931,36 +1931,36 @@
   
 
 
-<h1 id="storo-nucleus-vs-mojaloop-hub-visual-contrast">Storo Nucleus vs Mojaloop Hub — Visual Contrast<a class="headerlink" href="#storo-nucleus-vs-mojaloop-hub-visual-contrast" title="Permanent link">&para;</a></h1>
-<p>This note shows how <strong>Storo</strong> is <em>inspired by</em> Mojaloop while keeping a <strong>modular, rail‑agnostic nucleus</strong>. Two diagrams:
+<h1 id="storo-nucleus-vs-mojaloop-hub-visual-contrast">Storo Nucleus vs Mojaloop Hub - Visual Contrast<a class="headerlink" href="#storo-nucleus-vs-mojaloop-hub-visual-contrast" title="Permanent link">&para;</a></h1>
+<p>This note shows how <strong>Storo</strong> is <em>inspired by</em> Mojaloop while keeping a <strong>modular, rail-agnostic nucleus</strong>. Two diagrams:
 1) Component landscape comparison
-2) Transaction flow (Request‑to‑Pay) mapped to each architecture</p>
+2) Transaction flow (Request-to-Pay) mapped to each architecture</p>
 <hr />
 <h2 id="1-component-landscape">1) Component Landscape<a class="headerlink" href="#1-component-landscape" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
-  subgraph S["Storo Nucleus (Modular, Rail‑Agnostic)"]
+  subgraph S["Storo Nucleus (Modular, Rail-Agnostic)"]
     direction LR
-    S1[CTS\n(Canonical Transfer Service)]
-    S2[Rail Gateways\n(EcoCash/PayShap/OPPWA/USDC)]
-    S3[Ledger Service\n(Double‑Entry)]
-    S4[Compliance\n(Screening/Lists)]
-    S5[Directory &amp; Routing\n(ALS/Fees/Windows)]
+    S1[CTS&lt;br/&gt;(Canonical Transfer Service)]
+    S2[Rail Gateways&lt;br/&gt;(EcoCash/PayShap/OPPWA/USDC)]
+    S3[Ledger Service&lt;br/&gt;(Double-Entry)]
+    S4[Compliance&lt;br/&gt;(Screening/Lists)]
+    S5[Directory &amp; Routing&lt;br/&gt;(ALS/Fees/Windows)]
     S6[Reconciliation &amp; Returns]
     S7[Event Bus + Outbox]
     S8[Operator Console]
-    S9[Platform/Base\n(Admin/Time/Errors/IDs)]
+    S9[Platform/Base&lt;br/&gt;(Admin/Time/Errors/IDs)]
   end
 
   subgraph M["Mojaloop Hub (Switch + Scheme Services)"]
     direction LR
-    M1[Account Lookup Service\n(ALS / Discovery)]
-    M2[Quoting Service\n(FX / Fees Agreement)]
-    M3[Central Ledger\n(Clearing/Positions)]
-    M4[Settlement Module\n(RTGS/Net/Prefund)]
-    M5[Scheme Rules &amp; Auth\n(PKI, Signatures, Consent)]
+    M1[Account Lookup Service&lt;br/&gt;(ALS / Discovery)]
+    M2[Quoting Service&lt;br/&gt;(FX / Fees Agreement)]
+    M3[Central Ledger&lt;br/&gt;(Clearing/Positions)]
+    M4[Settlement Module&lt;br/&gt;(RTGS/Net/Prefund)]
+    M5[Scheme Rules &amp; Auth&lt;br/&gt;(PKI, Signatures, Consent)]
     M6[Fraud/Risk Hooks]
     M7[FSPIOP API Gateway]
-    M8[ILP Coordinator\n(Conditions/Fulfillment)]
+    M8[ILP Coordinator&lt;br/&gt;(Conditions/Fulfillment)]
   end
 
   %% Storo internals
@@ -1988,7 +1988,7 @@
 - <strong>Mojaloop</strong> is a <strong>shared switch</strong>: it offers discovery, quoting, clearing &amp; settlement to <strong>external DFSPs</strong>.<br />
 - Both use <strong>directories (ALS)</strong>, <strong>FX/fees agreement</strong>, <strong>security (PKI)</strong>, and <strong>fraud hooks</strong> — but Storo keeps them inside its nucleus; Mojaloop exposes them as scheme services.</p>
 <hr />
-<h2 id="2-requesttopay-r2p-flow-sidebyside">2) Request‑to‑Pay (R2P) Flow — Side‑by‑Side<a class="headerlink" href="#2-requesttopay-r2p-flow-sidebyside" title="Permanent link">&para;</a></h2>
+<h2 id="2-request-to-pay-r2p-flow-side-by-side">2) Request-to-Pay (R2P) Flow — Side-by-Side<a class="headerlink" href="#2-request-to-pay-r2p-flow-side-by-side" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>sequenceDiagram
   autonumber
   participant Client as Merchant App / POS
@@ -1997,10 +1997,10 @@
   participant GW as Rail Gateway (e.g., EcoCash/PayShap/USDC)
   participant Ledger as Ledger Service
 
-  Note over Client,Ledger: Storo — Rail‑agnostic nucleus
+  Note over Client,Ledger: Storo — Rail-agnostic nucleus
 
   Client-&gt;&gt;Storo: POST /transfers (payer alias, amount, rail)
-  Storo-&gt;&gt;Dir: Resolve alias → provider/route
+  Storo-&gt;&gt;Dir: Resolve alias -&gt; provider/route
   Dir--&gt;&gt;Storo: Provider &amp; fees/windows
   Storo-&gt;&gt;GW: transfers.submitted.&lt;rail&gt;
   GW--&gt;&gt;Storo: transfers.accepted (prompt delivered / tx observed)
@@ -2021,7 +2021,7 @@
   Note over PayerApp,Settle: Mojaloop — Shared scheme with DFSPs
 
   PayerApp-&gt;&gt;Hub: POST /parties (discover payee alias)
-  Hub-&gt;&gt;ALS: Lookup alias → DFSP
+  Hub-&gt;&gt;ALS: Lookup alias -&gt; DFSP
   ALS--&gt;&gt;Hub: Payee DFSP
   Hub-&gt;&gt;PayeeApp: GET /quotes?amount,currency
   PayeeApp--&gt;&gt;Hub: Quote (amountIn/Out, fees, FX, ILP condition)
@@ -2033,13 +2033,13 @@
   Hub-&gt;&gt;Settle: (Net/Gross) settlement instruction
   Hub--&gt;&gt;PayerApp: Transfer completed</code></pre>
 <p><strong>Interpretation</strong><br />
-- <strong>Storo</strong> treats R2P as an internal orchestration; <strong>gateways</strong> perform the last‑mile prompt/observe/settle.<br />
-- <strong>Mojaloop</strong> formalizes <strong>Discovery → Quote → Transfer</strong> across <strong>multiple DFSPs</strong>, with <strong>ILP</strong> ensuring atomicity and a separate <strong>settlement layer</strong>.</p>
+- <strong>Storo</strong> treats R2P as an internal orchestration; <strong>gateways</strong> perform the last-mile prompt/observe/settle.<br />
+- <strong>Mojaloop</strong> formalizes <strong>Discovery -&gt; Quote -&gt; Transfer</strong> across <strong>multiple DFSPs</strong>, with <strong>ILP</strong> ensuring atomicity and a separate <strong>settlement layer</strong>.</p>
 <hr />
 <h2 id="when-to-use-which-ideas">When to use which ideas<a class="headerlink" href="#when-to-use-which-ideas" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Use <strong>Storo’s modular gateways</strong> when you must integrate diverse rails (EcoCash, PayShap, OPPWA, USDC) <em>and</em> keep a single internal ledger of record.  </li>
-<li>Use <strong>Mojaloop patterns</strong> (FSPIOP, ILP, ISO 20022 mapping, scheme rules) to standardize cross‑institution flows and future‑proof for <strong>regional interop</strong>.</li>
+<li>Use <strong>Mojaloop patterns</strong> (FSPIOP, ILP, ISO 20022 mapping, scheme rules) to standardize cross-institution flows and future-proof for <strong>regional interop</strong>.</li>
 </ul>
 <hr />
 <p><em>Draft v1 — for internal architecture review.</em></p>

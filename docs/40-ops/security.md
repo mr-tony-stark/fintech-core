@@ -26,6 +26,11 @@ Standards for secrets, access, PCI scope, and PII handling in Storo.
 - PAN/token never flows into CTS or Ledger.  
 - Webhook/file artifacts are redacted and encrypted.
 
+### PCI SAQ & Tokenization (in-region)
+- Prefer network tokenization or vetted token vaults; avoid PAN handling outside gateways.  
+- Scope reduction: isolate gateways; segment networks; harden endpoints.  
+- Complete appropriate SAQ (likely SAQ D for service providers) with compensating controls documented.  
+
 ---
 
 ## PII Handling
@@ -33,6 +38,23 @@ Standards for secrets, access, PCI scope, and PII handling in Storo.
 - Encrypt at rest; redact in logs and events.  
 - Minimize in DBs; store raw artifacts in encrypted blob store.  
 - Data retention per `20-specs/data-retention-pii.md`.
+
+---
+
+## POPIA (South Africa)
+
+- Lawful basis: document processing purposes per flow (screening, settlement, reporting).  
+- Cross-border transfers: assess adequate protection or implement contractual safeguards; record in audits.  
+- Data subject rights: verify identity; fulfill access/correction/erasure subject to legal holds.  
+- Privacy by design: DPIA for new rails; minimize PII in events; default encryption.
+
+---
+
+## Licensing & Scheme Participation (ZA/ZW)
+
+- Role options: PSP, System Operator, or via sponsor bank; document per environment.  
+- PASA participation: outline sponsor relationships, limits, and responsibilities.  
+- Operational controls: incident management, segregation of duties, change management.
 
 ---
 
