@@ -1,6 +1,6 @@
 site_name: Storo Docs
 site_description: Documentation for the Storo payments nucleus — architecture, specs, ops.
-site_url: https://example.com/docs
+site_url: https://your-org.github.io/fintech-core/
 repo_url: https://github.com/your-org/fintech-core
 repo_name: your-org/fintech-core
 strict: true

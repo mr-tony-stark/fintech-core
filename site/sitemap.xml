@@ -1,271 +1,271 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://example.com/docs/</loc>
+         <loc>https://your-org.github.io/fintech-core/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/missing_items/</loc>
+         <loc>https://your-org.github.io/fintech-core/missing_items/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/sprint-001/</loc>
+         <loc>https://your-org.github.io/fintech-core/sprint-001/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/00-overview/</loc>
+         <loc>https://your-org.github.io/fintech-core/00-overview/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/00-overview/dev-workflow/</loc>
+         <loc>https://your-org.github.io/fintech-core/00-overview/dev-workflow/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/00-overview/glossary/</loc>
+         <loc>https://your-org.github.io/fintech-core/00-overview/glossary/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/00-overview/nfrs/</loc>
+         <loc>https://your-org.github.io/fintech-core/00-overview/nfrs/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/00-overview/nucleus/</loc>
+         <loc>https://your-org.github.io/fintech-core/00-overview/nucleus/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/00-overview/risks-open-questions/</loc>
+         <loc>https://your-org.github.io/fintech-core/00-overview/risks-open-questions/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/00-overview/storo-vs-mojaloop/</loc>
+         <loc>https://your-org.github.io/fintech-core/00-overview/storo-vs-mojaloop/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/00-overview/architecture-decisions/ADR-0001-events-outbox/</loc>
+         <loc>https://your-org.github.io/fintech-core/00-overview/architecture-decisions/ADR-0001-events-outbox/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/00-overview/architecture-decisions/ADR-0002-double-entry-ledger/</loc>
+         <loc>https://your-org.github.io/fintech-core/00-overview/architecture-decisions/ADR-0002-double-entry-ledger/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/00-overview/architecture-decisions/ADR-0003-contracts-first/</loc>
+         <loc>https://your-org.github.io/fintech-core/00-overview/architecture-decisions/ADR-0003-contracts-first/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/canonical-transfer-service/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/canonical-transfer-service/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/compliance-screening/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/compliance-screening/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/directory-routing/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/directory-routing/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/event-bus-outbox/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/event-bus-outbox/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/ledger-service/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/ledger-service/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/operator-console/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/operator-console/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/platform-base/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/platform-base/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/rail-gateway-airtel-momo/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/rail-gateway-airtel-momo/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/rail-gateway-ecocash/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/rail-gateway-ecocash/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/rail-gateway-eft/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/rail-gateway-eft/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/rail-gateway-mtn-momo/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/rail-gateway-mtn-momo/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/rail-gateway-oppwa/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/rail-gateway-oppwa/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/rail-gateway-payshap/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/rail-gateway-payshap/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/rail-gateway-rtgs/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/rail-gateway-rtgs/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/rail-gateway-template/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/rail-gateway-template/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/rail-gateway-usdc-algo/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/rail-gateway-usdc-algo/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/rail-gateway-zimswitch/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/rail-gateway-zimswitch/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/reconciliation-returns/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/reconciliation-returns/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-components/regulatory-reporting/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-components/regulatory-reporting/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/10-mvp/</loc>
+         <loc>https://your-org.github.io/fintech-core/10-mvp/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/api-canonical-transfer/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/api-canonical-transfer/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/chart-of-accounts/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/chart-of-accounts/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/data-retention-pii/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/data-retention-pii/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/error-codes/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/error-codes/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/events/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/events/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/external-integrations/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/external-integrations/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/fixtures/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/fixtures/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/fx-policy/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/fx-policy/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/posting-rules/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/posting-rules/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/regulatory-reporting/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/regulatory-reporting/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/risk-limits/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/risk-limits/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/20-specs/tax-vat/</loc>
+         <loc>https://your-org.github.io/fintech-core/20-specs/tax-vat/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/30-diagrams/component-nucleus/</loc>
+         <loc>https://your-org.github.io/fintech-core/30-diagrams/component-nucleus/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/30-diagrams/lifecycle-state/</loc>
+         <loc>https://your-org.github.io/fintech-core/30-diagrams/lifecycle-state/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/30-diagrams/recon-matching/</loc>
+         <loc>https://your-org.github.io/fintech-core/30-diagrams/recon-matching/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/30-diagrams/sequence-bop-reporting/</loc>
+         <loc>https://your-org.github.io/fintech-core/30-diagrams/sequence-bop-reporting/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/30-diagrams/sequence-eft-batch/</loc>
+         <loc>https://your-org.github.io/fintech-core/30-diagrams/sequence-eft-batch/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/30-diagrams/sequence-return-oppwa/</loc>
+         <loc>https://your-org.github.io/fintech-core/30-diagrams/sequence-return-oppwa/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/30-diagrams/sequence-stk-ecocash/</loc>
+         <loc>https://your-org.github.io/fintech-core/30-diagrams/sequence-stk-ecocash/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/30-diagrams/sequence-submit-payshap/</loc>
+         <loc>https://your-org.github.io/fintech-core/30-diagrams/sequence-submit-payshap/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/30-diagrams/sequence-submit-usdc/</loc>
+         <loc>https://your-org.github.io/fintech-core/30-diagrams/sequence-submit-usdc/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/40-ops/closing-the-books/</loc>
+         <loc>https://your-org.github.io/fintech-core/40-ops/closing-the-books/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/40-ops/observability/</loc>
+         <loc>https://your-org.github.io/fintech-core/40-ops/observability/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/40-ops/regulatory/</loc>
+         <loc>https://your-org.github.io/fintech-core/40-ops/regulatory/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/40-ops/runbooks/</loc>
+         <loc>https://your-org.github.io/fintech-core/40-ops/runbooks/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/40-ops/security/</loc>
+         <loc>https://your-org.github.io/fintech-core/40-ops/security/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/50-repo-structure/ci-cd/</loc>
+         <loc>https://your-org.github.io/fintech-core/50-repo-structure/ci-cd/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/50-repo-structure/local-dev/</loc>
+         <loc>https://your-org.github.io/fintech-core/50-repo-structure/local-dev/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/50-repo-structure/multi-repo-architecture/</loc>
+         <loc>https://your-org.github.io/fintech-core/50-repo-structure/multi-repo-architecture/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/50-repo-structure/release-strategy/</loc>
+         <loc>https://your-org.github.io/fintech-core/50-repo-structure/release-strategy/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/60-infra/aws-infra/</loc>
+         <loc>https://your-org.github.io/fintech-core/60-infra/aws-infra/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/70-sprints/epics-and-stories/</loc>
+         <loc>https://your-org.github.io/fintech-core/70-sprints/epics-and-stories/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/90-templates/TEMPLATE-adr/</loc>
+         <loc>https://your-org.github.io/fintech-core/90-templates/TEMPLATE-adr/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
     <url>
-         <loc>https://example.com/docs/90-templates/TEMPLATE-component/</loc>
+         <loc>https://your-org.github.io/fintech-core/90-templates/TEMPLATE-component/</loc>
          <lastmod>2025-08-27</lastmod>
     </url>
 </urlset>
