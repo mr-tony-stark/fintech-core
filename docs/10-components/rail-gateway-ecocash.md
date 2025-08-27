@@ -15,7 +15,7 @@ Adapt canonical transfers to EcoCash mobile money flows (STK/USSD prompts), hand
 - HTTP: `POST /webhooks/ecocash` (signature verify)
 
 ### Outputs
-- Events: `transfers.accepted`, `transfers.settled`, `transfers.returned`, `transfers.failed`
+- Events (envelope `v=1`): `transfers.accepted`, `transfers.settled`, `transfers.returned`, `transfers.failed`
 
 ## Data Model
 - `ecocash_ops` (transferId, msisdn, amountMinor, currency, opRef, status, reasonCode?)
@@ -52,3 +52,7 @@ sequenceDiagram
 
 ## Runbooks
 - Replay webhook; quarantine poison messages; contact MNO if outage persists.
+
+---
+
+> See also: [Rail Gateway — Template](./rail-gateway-template.md) and Reason Code mappings in [../20-specs/error-codes.md](../20-specs/error-codes.md)

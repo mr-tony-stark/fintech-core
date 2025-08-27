@@ -11,22 +11,24 @@ The **Event model** defines the envelope and catalog of all domain events emitte
 
 ---
 
-## 📦 Event Envelope
+## 📦 Event Envelope (v field)
 
 ```json
 {
   "eventId": "uuid",
   "type": "transfers.settled",
+  "v": 1,
   "occurredAt": "2025-08-26T10:15:01Z",
   "transferId": "tr_123",
   "tenantId": "tn_456",
-  "payload": { ... rail or business-specific data ... }
+  "payload": { "amount": { "value": 1000, "currency": "USD" } }
 }
 ```
 
 **Fields**
 - `eventId` – unique ID (UUIDv7 recommended).  
 - `type` – dot-delimited string category (see catalog).  
+- `v` – envelope schema version (integer, starting at 1).  
 - `occurredAt` – ISO8601 UTC timestamp.  
 - `transferId` – optional link to transfer (if relevant).  
 - `tenantId` – tenant scoping.  
@@ -77,8 +79,9 @@ The **Event model** defines the envelope and catalog of all domain events emitte
 ---
 
 ## 🧭 Versioning
+- Envelope: `v` is the envelope schema version (current: 1).  
 - Additive changes (new optional fields) require no version bump.  
-- Breaking changes introduce a new `type` version (e.g., `transfers.settled.v2`) with dual-publish during migration.
+- Breaking payload changes introduce a new `type` version (e.g., `transfers.settled.v2`) with dual-publish during migration.
 
 ---
 

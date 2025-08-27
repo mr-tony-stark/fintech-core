@@ -12,27 +12,27 @@ This note shows how **Storo** is *inspired by* Mojaloop while keeping a **modula
 flowchart LR
   subgraph S["Storo Nucleus (Modular, Rail-Agnostic)"]
     direction LR
-    S1[CTS<br/>(Canonical Transfer Service)]
-    S2[Rail Gateways<br/>(EcoCash/PayShap/OPPWA/USDC)]
-    S3[Ledger Service<br/>(Double-Entry)]
-    S4[Compliance<br/>(Screening/Lists)]
-    S5[Directory & Routing<br/>(ALS/Fees/Windows)]
-    S6[Reconciliation & Returns]
-    S7[Event Bus + Outbox]
-    S8[Operator Console]
-    S9[Platform/Base<br/>(Admin/Time/Errors/IDs)]
+    S1["CTS (Canonical Transfer Service)"]
+    S2["Rail Gateways (EcoCash/PayShap/OPPWA/USDC)"]
+    S3["Ledger Service (Double-Entry)"]
+    S4["Compliance (Screening/Lists)"]
+    S5["Directory & Routing (ALS/Fees/Windows)"]
+    S6["Reconciliation & Returns"]
+    S7["Event Bus + Outbox"]
+    S8["Operator Console"]
+    S9["Platform/Base (Admin/Time/Errors/IDs)"]
   end
 
   subgraph M["Mojaloop Hub (Switch + Scheme Services)"]
     direction LR
-    M1[Account Lookup Service<br/>(ALS / Discovery)]
-    M2[Quoting Service<br/>(FX / Fees Agreement)]
-    M3[Central Ledger<br/>(Clearing/Positions)]
-    M4[Settlement Module<br/>(RTGS/Net/Prefund)]
-    M5[Scheme Rules & Auth<br/>(PKI, Signatures, Consent)]
-    M6[Fraud/Risk Hooks]
-    M7[FSPIOP API Gateway]
-    M8[ILP Coordinator<br/>(Conditions/Fulfillment)]
+    M1["Account Lookup Service (ALS / Discovery)"]
+    M2["Quoting Service (FX / Fees Agreement)"]
+    M3["Central Ledger (Clearing/Positions)"]
+    M4["Settlement Module (RTGS/Net/Prefund)"]
+    M5["Scheme Rules & Auth (PKI, Signatures, Consent)"]
+    M6["Fraud/Risk Hooks"]
+    M7["FSPIOP API Gateway"]
+    M8["ILP Coordinator (Conditions/Fulfillment)"]
   end
 
   %% Storo internals
@@ -55,6 +55,7 @@ flowchart LR
   M3 --> M4
   M5 --- M7
   M6 --- M7
+
 ```
 
 **Key differences**  

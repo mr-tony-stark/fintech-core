@@ -68,7 +68,7 @@ jobs:
         uses: actions/setup-node@v4
         with: { node-version: '20' }
       - run: npm i -D @storo/specs ajv
-      - run: npm run validate:events  # project script that validates fixtures/outbound payloads
+      - run: npm run validate:events  # project script validates fixtures/outbound events against envelope v=1
       - run: npm run validate:openapi # if this repo exposes HTTP
 
   build:
@@ -123,5 +123,17 @@ jobs:
 ---
 
 ## Secrets & Tokens in CI
+---
+
+## Contract Validation & Fixtures
+
+- Source of truth: see `Specs → Events` (envelope `v=1`) and `Specs → Fixtures` for golden examples.
+- Minimum checks:
+  - Validate outbound events from providers (gateways, ledger, CTS) against envelope `v=1` and event schemas.
+  - Validate inbound consumer fixtures (e.g., ledger consuming `transfers.settled`) using AJV/`@storo/specs`.
+- Recommended project scripts:
+  - `validate:events` → runs schema checks on all event samples under `fixtures/events/*.json`.
+  - `validate:openapi` → validates OpenAPI if the repo exposes HTTP.
+
 - Use **GitHub Environments** or **OpenID Connect** to assume AWS roles. No long‑lived keys.
 - Service‑specific permissions; least privilege to push images / read Secrets Manager where necessary.

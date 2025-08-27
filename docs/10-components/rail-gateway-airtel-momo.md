@@ -9,7 +9,7 @@ Adapt canonical transfers to Airtel Money; strict schema validation; webhook han
 
 ## Interfaces
 - HTTP: `POST /webhooks/airtelmomo`
-- Events: as per canonical `transfers.*`
+- Events (envelope `v=1`): as per canonical `transfers.*`
 
 ## Data & Rules
 - `airtelmomo_ops`; MSISDN/currency validation; idempotency keying.
@@ -19,3 +19,7 @@ Adapt canonical transfers to Airtel Money; strict schema validation; webhook han
 
 ## Observability & Security
 - Prompt success rate; signature verify; PII redaction.
+
+---
+
+> See also: [Rail Gateway — Template](./rail-gateway-template.md) and Reason Code mappings in [../20-specs/error-codes.md](../20-specs/error-codes.md)

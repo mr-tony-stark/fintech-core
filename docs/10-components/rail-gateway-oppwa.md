@@ -31,7 +31,7 @@ The **OPPWA Gateway** adapts Storo canonical transfers to OPPWA (Open Payment Pl
 - `transfers.submitted.oppwa`
   - `{ transferId, tenantId, amount, currency, payer, payee, intent, metadata{ token, threeDS, merchantRef } }`
 
-### Events (emit)
+### Events (emit; envelope `v=1`)
 - `transfers.accepted` → `{ transferId, rail:"oppwa", opRef, resultCode }`
 - `transfers.settled` → `{ transferId, rail:"oppwa", opRef, captured:true, settlementDate? }`
 - `transfers.returned` → `{ transferId, rail:"oppwa", opRef, reasonCode }`
@@ -121,3 +121,7 @@ sequenceDiagram
 - **High 401/403 rates**: check API key rotation, entity mapping
 - **Webhook gaps**: verify public endpoint, firewall, signature; replay from OPPWA portal if available
 - **Frequent declines**: inspect 3DS setup and tokenization source; check risk engine outcomes
+
+---
+
+> See also: [Rail Gateway — Template](./rail-gateway-template.md) and Reason Code mappings in [../20-specs/error-codes.md](../20-specs/error-codes.md)

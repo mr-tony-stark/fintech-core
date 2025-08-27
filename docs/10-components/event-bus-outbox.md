@@ -15,6 +15,9 @@ The **Event Bus + Outbox** pattern guarantees reliable, exactly-once delivery of
 ## 🛠 Responsibilities
 - Each service writes events to a **local outbox table** within the same DB transaction as state changes.  
 - A dispatcher process drains the outbox and publishes to the bus.  
+  - Batch size, concurrency, and backoff are configurable.  
+  - Exponential backoff with jitter on publish failures.  
+  - DLQ on repeated failures after `RETRY_MAX`.  
 - Consumers are idempotent and dedupe events.  
 - Provide metrics, retries, and dead-letter handling.
 
@@ -41,7 +44,7 @@ The **Event Bus + Outbox** pattern guarantees reliable, exactly-once delivery of
 ---
 
 ## 🗄 Data Model
-- `outbox` (id, eventType, payload, state=PENDING|SENT|FAILED, createdAt)  
+- `outbox` (id, eventType, payload, state=PENDING|SENT|FAILED, createdAt, attempts, lastError?)  
 - `inbox` (for dedupe, optional: eventId, processedAt)  
 
 ---
@@ -72,7 +75,10 @@ sequenceDiagram
 ---
 
 ## 📊 Observability
-- Metrics: outbox backlog size, publish latency, consumer lag.  
+- Metrics: 
+  - `event_outbox_backlog{service}`  
+  - `event_publish_lag_seconds{service}`  
+  - `event_consumer_lag_seconds{service,topic}`  
 - Logs: structured with eventId, transferId.  
 - Alerts: backlog > SLA.
 

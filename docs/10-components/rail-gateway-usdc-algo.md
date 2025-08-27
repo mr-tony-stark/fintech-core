@@ -29,7 +29,7 @@ The **USDC/Algorand Gateway** adapts Storo’s canonical transfers to on-chain U
 - `transfers.submitted.usdc`
   - payload: `{ transferId, tenantId, amount{value,currency}, payer, payee, intent: "PUSH"|"PULL"|"CAPTURE"|"AUTH", metadata{} }`
 
-### Events (emit)
+### Events (emit; envelope `v=1`)
 - `transfers.accepted` → `{ transferId, rail:"usdc-algo", txId, suggestedRound }`
 - `transfers.settled` → `{ transferId, rail:"usdc-algo", txId, confirmedRound, feeMicroAlgos }`
 - `transfers.failed` → `{ transferId, rail:"usdc-algo", reason, details }`
@@ -120,3 +120,7 @@ sequenceDiagram
 - **Frequent INSUFFICIENT_FUNDS**: inspect payer funding policy; enable preflight balance check
 - **High confirmation latency**: increase fee or confirmation window temporarily
 - **Signer down**: fail closed; drain DLQ after recovery
+
+---
+
+> See also: [Rail Gateway — Template](./rail-gateway-template.md) and Reason Code mappings in [../20-specs/error-codes.md](../20-specs/error-codes.md)

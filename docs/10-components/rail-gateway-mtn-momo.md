@@ -14,7 +14,7 @@ Translate canonical transfers to MTN MoMo APIs (P2P/P2M), enforce validation, pr
 - HTTP: `POST /webhooks/mtnmomo`
 
 ### Outputs
-- Events: `transfers.accepted`, `transfers.settled`, `transfers.returned`, `transfers.failed`
+- Events (envelope `v=1`): `transfers.accepted`, `transfers.settled`, `transfers.returned`, `transfers.failed`
 
 ## Data Model
 - `mtnmomo_ops` (...)
@@ -28,3 +28,7 @@ Translate canonical transfers to MTN MoMo APIs (P2P/P2M), enforce validation, pr
 
 ## Observability & Security
 - Metrics, DLQ; webhook signature verify, redaction.
+
+---
+
+> See also: [Rail Gateway — Template](./rail-gateway-template.md) and Reason Code mappings in [../20-specs/error-codes.md](../20-specs/error-codes.md)

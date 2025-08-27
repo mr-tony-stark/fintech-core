@@ -42,6 +42,7 @@ The **Reconciliation & Returns Service** ensures Storo’s books stay aligned wi
 ## 🗄 Data Model
 - `statements` (rail, fileId, source, importedAt)  
 - `statement_lines` (id, statementId, externalRef, amount, currency, date, type, reason?)  
+  - Matching keys (per rail) typically include: `{ externalRef | (acqRef,authCode) | txId } + amount + date window`.  
 - `matches` (lineId, transferId, matchedAt)  
 - `exceptions` (id, lineId, status, resolvedAt, operatorId?)  
 - `outbox_recon`  
@@ -70,6 +71,7 @@ sequenceDiagram
   R-->>CTS: transfers.returned (if return/chargeback)
   R-->>CTS: recon.exception.opened (if unmatched)
   CTS->>L: post reversals / settlements
+  Note over CTS,L: Ledger applies Posting Rules to reverse prior settled entries
 ```
 
 ---

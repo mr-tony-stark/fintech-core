@@ -8,7 +8,7 @@ Handle high-value, real-time gross settlement submissions and acknowledgments.
 - Submit payment via partner/bank API; handle acknowledgments and settlement confirmations.
 
 ## Interfaces
-- Events: `transfers.*`
+- Events (envelope `v=1`): `transfers.*`
 - Files/API: as per partner specifications.
 
 ## Data Model
@@ -22,3 +22,7 @@ Handle high-value, real-time gross settlement submissions and acknowledgments.
 
 ## Observability & Security
 - Metrics: ack/settle latency; strong auth; PII minimization.
+
+---
+
+> See also: [Rail Gateway — Template](./rail-gateway-template.md) and Reason Code mappings in [../20-specs/error-codes.md](../20-specs/error-codes.md)

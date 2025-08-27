@@ -29,17 +29,60 @@ The **Directory & Routing Service** is Storo’s authoritative source of rails m
 - `GET /routes?bin|memberId|rail=...`  
   → `{ endpoint, fees, settlementWindow, constraints }`
 
+Examples:
+
+`GET /routes?bin=438742`
+```json
+{
+  "endpoint": "https://api.processor.example/payments",
+  "fees": { "type": "percentage", "value": 0.02 },
+  "settlementWindow": { "cutoff": "16:30", "timezone": "Africa/Johannesburg" },
+  "constraints": { "currencies": ["ZAR","USD"], "limitsMinor": { "max": 10000000 } }
+}
+```
+
 - `GET /institutions/:id`  
   → `{ id, name, rail, endpoint, fees, windows }`
 
 - `GET /calendars/:region`  
   → `{ region: "ZA"|"ZW", holidays: [...], timezone }`
 
+Example:
+```json
+{
+  "region": "ZA",
+  "timezone": "Africa/Johannesburg",
+  "holidays": ["2025-01-01","2025-03-21","2025-04-18"]
+}
+```
+
 ### Events (emit)
 - `directory.version.updated`  
   - `{ versionId, effectiveFrom, source, checksum }`
 
+Example:
+```json
+{
+  "eventId": "018f3e00-2222-7f00-b1e3-7a7f5d3b9b10",
+  "type": "directory.version.updated",
+  "v": 1,
+  "occurredAt": "2025-08-27T08:00:00Z",
+  "tenantId": "system",
+  "payload": {
+    "versionId": "dir_v2025-08-27_01",
+    "effectiveFrom": "2025-08-27T09:00:00+02:00",
+    "source": "bank-codes+fees-portal",
+    "checksum": "sha256:abcd..."
+  }
+}
+```
+
 ---
+
+### Admin & Time (via Platform/Base)
+- Admin: `GET /live`, `GET /ready`, `GET /metrics`, `GET /version`.
+- Time helpers: banking-day logic and cutoffs use Platform/Base calendars (`Africa/Johannesburg`, `Africa/Harare`).
+
 
 ## 🗄 Data Model
 - `institutions` (id, name, rail, endpoint, status)  

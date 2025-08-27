@@ -69,6 +69,7 @@ nav:
           - "00-overview/architecture-decisions/ADR-0003-contracts-first.md"
   - Components:
       - "10-components/canonical-transfer-service.md"
+      - "10-components/rail-gateway-template.md"
       - "10-components/rail-gateway-oppwa.md"
       - "10-components/rail-gateway-zimswitch.md"
       - "10-components/rail-gateway-usdc-algo.md"
@@ -86,9 +87,11 @@ nav:
       - "10-components/operator-console.md"
       - "10-components/platform-base.md"
       - "10-components/regulatory-reporting.md"
+  - MVP: "10-mvp/README.md"
   - Specs:
       - "20-specs/events.md"
       - "20-specs/api-canonical-transfer.md"
+      - "20-specs/fixtures.md"
       - "20-specs/posting-rules.md"
       - "20-specs/data-retention-pii.md"
       - "20-specs/chart-of-accounts.md"
@@ -112,6 +115,8 @@ nav:
       - "40-ops/security.md"
       - "40-ops/closing-the-books.md"
       - "40-ops/regulatory.md"
+  - Infra:
+      - "60-infra/aws-infra.md"
   - Repo Structure:
       - "50-repo-structure/multi-repo-architecture.md"
       - "50-repo-structure/ci-cd.md"
@@ -119,6 +124,7 @@ nav:
       - "50-repo-structure/release-strategy.md"
   - Sprints:
       - "sprint-001.md"
+      - "70-sprints/epics-and-stories.md"
   - Templates:
       - "90-templates/TEMPLATE-component.md"
       - "90-templates/TEMPLATE-sequence.mmd"

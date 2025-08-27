@@ -22,6 +22,7 @@ Metrics, logs, and tracing conventions for Storo.
 - `gateway_submit_duration_seconds_bucket{rail}`  
 - `event_outbox_backlog{service}`  
 - `event_publish_lag_seconds{service}`  
+- `event_consumer_lag_seconds{service,topic}`  
 - `ledger_posting_latency_seconds_bucket`  
 - `recon_match_rate` , `recon_unmatched_backlog`  
 - `compliance_screen_latency_seconds_bucket` , `compliance_index_age_hours`

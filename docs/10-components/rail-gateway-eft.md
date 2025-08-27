@@ -9,7 +9,7 @@ Manage batch submissions and returns for EFT, aligning with Bankserv file format
 
 ## Interfaces
 - Files: batch submission, settlement, returns.
-- Events: `transfers.*`
+- Events (envelope `v=1`): `transfers.*`
 
 ## Data Model
 - `eft_batches`, `eft_lines`, artifacts for file copies.

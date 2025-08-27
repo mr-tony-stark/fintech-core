@@ -30,7 +30,7 @@ The **Zimswitch Gateway** adapts Storo canonical transfers to Zimswitch-connecte
 - `transfers.submitted.zimswitch`
   - `{ transferId, tenantId, amount, currency, payer, payee, intent, metadata{ token|panRef, emv, terminal, merchantRef } }`
 
-### Events (emit)
+### Events (emit; envelope `v=1`)
 - `transfers.accepted` → `{ transferId, rail:"zimswitch", acqRef, authCode }`
 - `transfers.settled` → `{ transferId, rail:"zimswitch", settlementDate, batchId? }`
 - `transfers.returned` → `{ transferId, rail:"zimswitch", reasonCode }`
@@ -127,3 +127,7 @@ sequenceDiagram
 - **Approval rate drop**: check acquirer status, BIN routing config, risk engine flags
 - **Recon mismatches**: inspect mapping keys (acqRef, authCode, amount/date window)
 - **Return spike**: analyze reason codes; notify CTS to throttle high-risk merchants
+
+---
+
+> See also: [Rail Gateway — Template](./rail-gateway-template.md) and Reason Code mappings in [../20-specs/error-codes.md](../20-specs/error-codes.md)

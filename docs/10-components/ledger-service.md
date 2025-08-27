@@ -29,12 +29,14 @@ The **Ledger Service** is Storo’s **book of record**. It maintains double‑en
 
 ## 🔌 Interfaces
 
-### Events (consume)
+### Events (consume; envelope `v=1`)
 - `transfers.accepted`
 - `transfers.settled`
 - `transfers.returned`
 
-### Events (emit)
+> Dedupe per Events spec: see [../20-specs/events.md](../20-specs/events.md) (consumer idempotency by `eventId`, lifecycle uniqueness for `(transferId,type)`).
+
+### Events (emit; envelope `v=1`)
 - `ledger.posting.created`
 - `ledger.balance.updated`
 
@@ -42,6 +44,9 @@ The **Ledger Service** is Storo’s **book of record**. It maintains double‑en
 - `GET /balances?accountId=...&currency=...`
 - `GET /journal?transferId=...` or `?accountId=...&from=...&to=...`
 - `GET /statements?accountId=...&from=...&to=...&format=bai2|json`
+
+### Admin (via Platform/Base)
+- `GET /live`, `GET /ready`, `GET /metrics`, `GET /version` provided by Platform/Base and adopted by Ledger.
 
 > **Write access** is event‑driven only. Manual adjustments are rare and must go through the Operator Console using explicit adjustment events with approvals/audit.
 
@@ -66,6 +71,7 @@ The **Ledger Service** is Storo’s **book of record**. It maintains double‑en
 ---
 
 ## 🧮 Posting Rules (canonical)
+See: [../20-specs/posting-rules.md](../20-specs/posting-rules.md)
 
 All amounts are in **minor units** (e.g., cents). Examples assume a customer pays a merchant 100.00 with a 1.00 fee.
 
@@ -147,6 +153,8 @@ sequenceDiagram
 - **Append‑only**: no deletes; corrections via new journals.  
 - **Idempotent**: journal key = hash(`transferId`,`eventType`,`sequence`); duplicates ignored.  
 - **Temporal**: `occurredAt` from event; do not rewrite history.
+
+> Consumer idempotency: dedupe inbound events by `eventId`, and enforce lifecycle uniqueness `(transferId,eventType)` to avoid double-posting.
 
 ---
 

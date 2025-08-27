@@ -2,17 +2,15 @@
 
 Welcome to the **Storo Docs** — the single source of truth for how the Storo payments nucleus is designed, built, and operated.
 
-This repository is structured for both **engineers** (who need precise specifications and diagrams) and **stakeholders** (who need a high-level view of what Storo does and how it connects to the outside world).
-
 ---
 
-## 🌍 What is Storo?
+## 🌍 What this provides?
 
-Storo is a **payments nucleus** for the Southern Africa ↔ global corridor. It provides:
+Storo provides a **payments nucleus** for the Southern Africa ↔ global corridor. It provides:
 
 - **Unified API** for payments, payouts, and transfers.
 - **Ledger** for strict double-entry accounting and balance tracking.
-- **Router** that connects to multiple **rails** (USDC on Algorand, Zimswitch/OPPWA, mobile money, EFT).
+- **Router** that connects to multiple **rails** (USDC on Avax/Algorand, Zimswitch/OPPWA, mobile money, EFT).
 - **Compliance and reconciliation** as first-class components, not afterthoughts.
 
 Think of it as the **boring but unbreakable center** of our payment universe.
