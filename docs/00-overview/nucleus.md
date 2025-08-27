@@ -198,4 +198,4 @@ stateDiagram-v2
 
 ---
 
-**Next step:** See [../10-components/](../10-components/) for detailed pages on each service.
+**Next step:** See [../10-components/canonical-transfer-service.md](../10-components/canonical-transfer-service.md) for detailed pages on each service.

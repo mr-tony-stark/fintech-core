@@ -1,0 +1,110 @@
+site_name: Storo Docs
+site_description: Documentation for the Storo payments nucleus — architecture, specs, ops.
+site_url: https://example.com/docs
+repo_url: https://github.com/your-org/fintech-core
+repo_name: your-org/fintech-core
+strict: true
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.tracking
+    - content.code.copy
+    - content.action.edit
+    - toc.integrate
+  icon:
+    repo: fontawesome/brands/github
+  logo: assets/images/favicon.svg
+  favicon: assets/images/favicon.ico
+  palette:
+    - scheme: default
+      primary: black
+      accent: custom
+    - scheme: slate
+      primary: black
+      accent: custom
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - attr_list
+  - def_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+
+extra_javascript:
+  # Mermaid for diagrams in fenced ```mermaid blocks
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
+extra_css:
+  - styles/brand.css
+
+nav:
+  - Home: index.md
+  - Overview:
+      - "00-overview/index.md"
+      - "00-overview/nucleus.md"
+      - "00-overview/glossary.md"
+      - "00-overview/storo-vs-mojaloop.md"
+      - Architecture Decisions:
+          - "00-overview/architecture-decisions/ADR-0001-events-outbox.md"
+          - "00-overview/architecture-decisions/ADR-0002-double-entry-ledger.md"
+          - "00-overview/architecture-decisions/ADR-0003-contracts-first.md"
+  - Components:
+      - "10-components/canonical-transfer-service.md"
+      - "10-components/rail-gateway-oppwa.md"
+      - "10-components/rail-gateway-zimswitch.md"
+      - "10-components/rail-gateway-usdc-algo.md"
+      - "10-components/ledger-service.md"
+      - "10-components/compliance-screening.md"
+      - "10-components/directory-routing.md"
+      - "10-components/reconciliation-returns.md"
+      - "10-components/event-bus-outbox.md"
+      - "10-components/operator-console.md"
+      - "10-components/platform-base.md"
+  - Specs:
+      - "20-specs/events.md"
+      - "20-specs/api-canonical-transfer.md"
+      - "20-specs/posting-rules.md"
+      - "20-specs/data-retention-pii.md"
+      - "20-specs/chart-of-accounts.md"
+  - Diagrams:
+      - "30-diagrams/component-nucleus.md"
+      - "30-diagrams/lifecycle-state.md"
+      - "30-diagrams/sequence-submit-usdc.md"
+      - "30-diagrams/sequence-return-oppwa.md"
+      - "30-diagrams/recon-matching.md"
+  - Ops:
+      - "40-ops/runbooks.md"
+      - "40-ops/observability.md"
+      - "40-ops/security.md"
+      - "40-ops/closing-the-books.md"
+  - Repo Structure:
+      - "50-repo-structure/multi-repo-architecture.md"
+      - "50-repo-structure/ci-cd.md"
+      - "50-repo-structure/local-dev.md"
+      - "50-repo-structure/release-strategy.md"
+  - Sprints:
+      - "sprint-001.md"
+  - Templates:
+      - "90-templates/TEMPLATE-component.md"
+      - "90-templates/TEMPLATE-sequence.mmd"
+      - "90-templates/TEMPLATE-state.mmd"
+      - "90-templates/TEMPLATE-adr.md"
