@@ -86,6 +86,7 @@ nav:
       - "10-components/event-bus-outbox.md"
       - "10-components/operator-console.md"
       - "10-components/platform-base.md"
+      - "10-components/woocommerce.md"
       - "10-components/regulatory-reporting.md"
   - MVP: "10-mvp/README.md"
   - Specs:

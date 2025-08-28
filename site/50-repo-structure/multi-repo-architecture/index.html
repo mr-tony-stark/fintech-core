@@ -2149,6 +2149,30 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#repo-taxonomy-and-deployment-lib-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repo taxonomy and deployment (-lib convention)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repo taxonomy and deployment (-lib convention)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-additions-based-on-current-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended additions based on current docs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contractsfirst-single-source-of-truth" class="md-nav__link">
     <span class="md-ellipsis">
       Contracts‑First (single source of truth)
@@ -2762,6 +2786,147 @@
 <blockquote>
 <p>Ownership is explicit. Each repo has CODEOWNERS and a simple <code>Makefile</code>/<code>Taskfile</code> so onboarding is fast.</p>
 </blockquote>
+<hr />
+<h2 id="repo-taxonomy-and-deployment-lib-convention">Repo taxonomy and deployment (-lib convention)<a class="headerlink" href="#repo-taxonomy-and-deployment-lib-convention" title="Permanent link">&para;</a></h2>
+<p>This expands the map with type, deployment model, and Lambda usage. Libraries use the suffix <code>-lib</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Repo</th>
+<th>Type</th>
+<th>Lambdas</th>
+<th>Primary runtime</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>storo-cts</td>
+<td>service</td>
+<td>Yes (cts-api, cts-outbox-worker)</td>
+<td>AWS Lambda + API Gateway, Aurora v2 via RDS Proxy</td>
+<td>Pilot Option A selection</td>
+</tr>
+<tr>
+<td>storo-gw-usdc</td>
+<td>service</td>
+<td>No (pilot)</td>
+<td>ECS Fargate (evaluate Lambda later)</td>
+<td>On-chain adapter; artifacts encrypted</td>
+</tr>
+<tr>
+<td>storo-gw-oppwa</td>
+<td>service</td>
+<td>No</td>
+<td>ECS Fargate</td>
+<td>PCI-contained gateway</td>
+</tr>
+<tr>
+<td>storo-gw-zimswitch</td>
+<td>service</td>
+<td>No</td>
+<td>ECS Fargate</td>
+<td>ISO discipline; file ingest for recon</td>
+</tr>
+<tr>
+<td>storo-ledger</td>
+<td>service</td>
+<td>No</td>
+<td>ECS Fargate + RDS</td>
+<td>Book of record; append-only</td>
+</tr>
+<tr>
+<td>storo-compliance</td>
+<td>service</td>
+<td>No</td>
+<td>ECS Fargate + RDS</td>
+<td>Local index; <code>/screen</code></td>
+</tr>
+<tr>
+<td>storo-directory</td>
+<td>service</td>
+<td>No</td>
+<td>ECS Fargate + RDS (+ Redis optional)</td>
+<td>Routing + calendars</td>
+</tr>
+<tr>
+<td>storo-recon</td>
+<td>service</td>
+<td>Optional workers</td>
+<td>ECS Fargate + S3/SQS</td>
+<td>Statement ingest + returns</td>
+</tr>
+<tr>
+<td>storo-operator-console</td>
+<td>service (UI)</td>
+<td>No</td>
+<td>Next.js (ECS/CloudFront)</td>
+<td>Internal UI with SSO/RBAC</td>
+</tr>
+<tr>
+<td>storo-specs-lib</td>
+<td>library</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>JSON Schemas + OpenAPI + fixtures (publishes Go/TS packages). Alias of prior “storo-specs”.</td>
+</tr>
+<tr>
+<td>storo-platform-lib</td>
+<td>library</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Platform/Base: admin endpoints, time, IDs, errors, embedded migrations.</td>
+</tr>
+<tr>
+<td>storo-outbox-lib</td>
+<td>library</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Standard outbox/inbox schema helpers, dispatcher utilities, metrics.</td>
+</tr>
+<tr>
+<td>storo-cdk-lib</td>
+<td>library</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Shared CDK constructs (API route attach, RDS Proxy, SNS/SQS FIFO, alarms).</td>
+</tr>
+<tr>
+<td>storo-infra</td>
+<td>infra</td>
+<td>N/A</td>
+<td>CDK app (preferred) or Terraform (legacy)</td>
+<td>VPC, Aurora v2 + RDS Proxy, API Gateway, SNS/SQS, Observability; exports SSM params.</td>
+</tr>
+<tr>
+<td>storo-observability</td>
+<td>ops</td>
+<td>N/A</td>
+<td>Grafana/Prom rules</td>
+<td>Dashboards and alerting packs.</td>
+</tr>
+<tr>
+<td>storo-devstack</td>
+<td>ops</td>
+<td>N/A</td>
+<td>Docker Compose/Tilt</td>
+<td>Local fleet + LocalStack/Prom/Grafana.</td>
+</tr>
+</tbody>
+</table>
+<p>Notes
+- For libraries, publish versioned artifacts: Go module and/or NPM (TS) as applicable.
+- Service repos own their CI/CD and migrations; they import schemas from <code>storo-specs-lib</code> and helpers from <code>storo-platform-lib</code>/<code>storo-outbox-lib</code>.
+- Infra: new CDK usage added in <code>docs/60-infra/aws-infra.md</code>; either evolve <code>storo-infra</code> to CDK or split into <code>storo-infra</code> (env config) + <code>storo-cdk-lib</code> (constructs).</p>
+<h3 id="recommended-additions-based-on-current-docs">Recommended additions based on current docs<a class="headerlink" href="#recommended-additions-based-on-current-docs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Create <code>storo-platform-lib</code> (concretizes the Platform/Base page).</li>
+<li>Create <code>storo-outbox-lib</code> (shared dispatcher + schema, metrics, retry policy consistent with ADR‑0001).</li>
+<li>Create <code>storo-cdk-lib</code> and migrate <code>storo-infra</code> to a CDK app using these constructs (Option A pilot aligns with CDK snippets).</li>
+</ul>
+<p>Naming convention
+- Libraries end with <code>-lib</code> (e.g., <code>storo-platform-lib</code>, <code>storo-specs-lib</code>, <code>storo-cdk-lib</code>).
+- Services and UIs omit the suffix (e.g., <code>storo-cts</code>, <code>storo-gw-usdc</code>, <code>storo-operator-console</code>).</p>
 <hr />
 <h2 id="contractsfirst-single-source-of-truth">Contracts‑First (single source of truth)<a class="headerlink" href="#contractsfirst-single-source-of-truth" title="Permanent link">&para;</a></h2>
 <h3 id="storospecs">storo‑specs<a class="headerlink" href="#storospecs" title="Permanent link">&para;</a></h3>

@@ -42,6 +42,39 @@ This document defines **which repos exist**, **who owns them**, **how they inter
 
 ---
 
+## Repo classification and naming conventions
+
+**Convention**
+- Libraries and shared packages MUST use the `-lib` suffix and contain no Lambdas.
+- Services and gateways (no `-lib` suffix) may include Lambdas where serverless is beneficial (webhooks, async processors, scheduled jobs).
+- Infra repos do not themselves contain Lambdas but define/deploy them.
+
+| Repo | Type | Lambdas | Description |
+|---|---|---|---|
+| storo-specs | Contracts source (publishes libs) | N/A | Source of truth for event and API schemas; publishes `@storo/specs` (TS) and `storo-specs-go-lib` (Go). |
+| storo-specs-go-lib | Library | No | Generated Go types/validators from `storo-specs`. |
+| storo-platform-lib | Library | No | Shared domain types, business time/holiday calendars, RBAC helpers. |
+| storo-outbox-lib | Library | No | Outbox helpers: transactional writes, idempotency keys, retry/backoff, metrics. |
+| storo-otel-lib | Library | No | OpenTelemetry setup, logging, tracing, metrics helpers. |
+| storo-cts | Service | Yes | Canonical Transfer Service API/orchestration; may run webhook or async processors as Lambdas. |
+| storo-gw-usdc | Gateway Service | Yes | USDC/Algorand rail gateway; webhook handlers and async processors as Lambdas. |
+| storo-gw-oppwa | Gateway Service | Yes | OPPWA gateway; signed webhooks and callbacks as Lambdas. |
+| storo-gw-zimswitch | Gateway Service | Possible | ISO8583 processing; primarily containerized, Lambdas possible for specific async tasks. |
+| storo-ledger | Service | No | Double-entry ledger; stateful DB workers; not expected to use Lambdas. |
+| storo-compliance | Service | Possible | Screening; may use Lambdas for list ingestion/refresh, core service containerized. |
+| storo-directory | Service | Possible | Reference datasets; may use Lambdas for scheduled imports; core reads are containerized. |
+| storo-recon | Service | Possible | Statement ingest/matching; may use Lambdas for schedulers/extractors. |
+| storo-operator-console | UI/Web | No | Internal Next.js app for ops; no Lambdas in repo (hosting may use edge/serverless runtime). |
+| storo-devstack | Dev tooling | No | Local docker compose/Tilt; no Lambdas. |
+| storo-infra | Infra | N/A | Terraform for environments, images, IAM, secrets; deploys container workloads. |
+| storo-cdk-infra | Infra | N/A | CDK for serverless components (Lambda, API Gateway, SQS/SNS bindings) for serverless use-cases. |
+| storo-observability | Observability | N/A | Dashboards and alert rules (Grafana/Prometheus). |
+
+Notes
+- Gateways and CTS are the primary candidates to include Lambdas (webhooks, async enrich/emit, scheduled maintenance).
+- Libraries never ship compute. If a repo might own runtime code, it should not carry the `-lib` suffix.
+- `storo-cdk-infra` is introduced to manage serverless stacks alongside `storo-infra` (Terraform) for containerized infrastructure.
+
 ## Contracts‑First (single source of truth)
 
 ### storo‑specs
