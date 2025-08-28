@@ -24,7 +24,7 @@
     
     
       
-        <title>Event Bus & Outbox Infrastructure - Storo Docs</title>
+        <title>Event Bus & Outbox — How It Works (Exactly) - Storo Docs</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#event-bus-outbox-infrastructure" class="md-skip">
+        <a href="#event-bus-outbox-how-it-works-exactly" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Event Bus &amp; Outbox Infrastructure
+              Event Bus &amp; Outbox — How It Works (Exactly)
             
           </span>
         </div>
@@ -1166,7 +1166,7 @@
   
   
   <span class="md-ellipsis">
-    Event Bus &amp; Outbox Infrastructure
+    Event Bus &amp; Outbox — How It Works (Exactly)
     
   </span>
   
@@ -1179,7 +1179,7 @@
   
   
   <span class="md-ellipsis">
-    Event Bus &amp; Outbox Infrastructure
+    Event Bus &amp; Outbox — How It Works (Exactly)
     
   </span>
   
@@ -1202,46 +1202,64 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#purpose" class="md-nav__link">
+  <a href="#the-contract" class="md-nav__link">
     <span class="md-ellipsis">
-      🎯 Purpose
+      The contract
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#responsibilities" class="md-nav__link">
+  <a href="#components-roles" class="md-nav__link">
     <span class="md-ellipsis">
-      🛠 Responsibilities
+      Components &amp; Roles
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#interfaces" class="md-nav__link">
+  <a href="#happy-path-sequence" class="md-nav__link">
     <span class="md-ellipsis">
-      🔌 Interfaces
+      Happy Path Sequence
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🔌 Interfaces">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Shapes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#events" class="md-nav__link">
+  <a href="#event-envelope" class="md-nav__link">
     <span class="md-ellipsis">
-      Events
+      Event envelope
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#admin" class="md-nav__link">
+  <a href="#outbox-table-producer-db" class="md-nav__link">
     <span class="md-ellipsis">
-      Admin
+      Outbox table (producer DB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbox-table-consumer-db-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inbox table (consumer DB) — optional
     </span>
   </a>
   
@@ -1253,54 +1271,129 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-model" class="md-nav__link">
+  <a href="#failure-retry-semantics" class="md-nav__link">
     <span class="md-ellipsis">
-      🗄 Data Model
+      Failure &amp; Retry Semantics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Failure &amp; Retry Semantics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#producerdispatcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Producer/Dispatcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consumer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Consumer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exactly-once-boundary-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exactly-once boundary &amp; responsibilities
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sequence" class="md-nav__link">
+  <a href="#how-other-components-use-it" class="md-nav__link">
     <span class="md-ellipsis">
-      📐 Sequence
+      How other components use it
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#failure-modes" class="md-nav__link">
+  <a href="#operational-defaults-adopt-now" class="md-nav__link">
     <span class="md-ellipsis">
-      🚨 Failure Modes
+      Operational defaults (adopt now)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#observability" class="md-nav__link">
+  <a href="#wire-test-localcloud-sanity-checks" class="md-nav__link">
     <span class="md-ellipsis">
-      📊 Observability
+      Wire Test (local/cloud sanity checks)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wire Test (local/cloud sanity checks)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-sql-outbox-schema-seed" class="md-nav__link">
+    <span class="md-ellipsis">
+      1) SQL — Outbox schema &amp; seed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aws-cli-bus-quick-setup-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      2) AWS CLI — Bus quick setup (example)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dispatcher-mock-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      3) Dispatcher mock (Python)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-consumer-mock-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      4) Consumer mock (Python)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runbooks-condensed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runbooks (condensed)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#security" class="md-nav__link">
+  <a href="#security-pii" class="md-nav__link">
     <span class="md-ellipsis">
-      🔐 Security
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#runbooks" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧭 Runbooks
+      Security &amp; PII
     </span>
   </a>
   
@@ -2419,7 +2512,7 @@
   
   
   <span class="md-ellipsis">
-    Epics &amp; Stories Status
+    🛠 Storo Nucleus — Kanban Board (with Repos, Langs, Infra Deps)
     
   </span>
   
@@ -2601,96 +2694,297 @@
   
 
 
-<h1 id="event-bus-outbox-infrastructure">Event Bus &amp; Outbox Infrastructure<a class="headerlink" href="#event-bus-outbox-infrastructure" title="Permanent link">&para;</a></h1>
-<p>The <strong>Event Bus + Outbox</strong> pattern guarantees reliable, exactly-once delivery of domain events across Storo’s services.</p>
-<hr />
-<h2 id="purpose">🎯 Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<h1 id="event-bus-outbox-how-it-works-exactly">Event Bus &amp; Outbox — How It Works (Exactly)<a class="headerlink" href="#event-bus-outbox-how-it-works-exactly" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Target stack: <strong>Aurora PostgreSQL + RDS Proxy + SNS FIFO + SQS FIFO</strong> (Option A)</p>
+</blockquote>
+<h2 id="the-contract">The contract<a class="headerlink" href="#the-contract" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Ensure <strong>atomic state + event publishing</strong>.  </li>
-<li>Enable <strong>loose coupling</strong> between services.  </li>
-<li>Provide <strong>auditability</strong> of all domain events.  </li>
-<li>Support <strong>retries &amp; idempotency</strong> safely.</li>
+<li><strong>Exactly-once at the producer boundary</strong> via a <strong>transactional outbox</strong> (state <strong>and</strong> event row committed together).</li>
+<li><strong>At-least-once across the bus</strong>: consumers must be <strong>idempotent</strong> and <strong>dedupe</strong> (<code>eventId</code>, optionally domain keys).</li>
 </ul>
 <hr />
-<h2 id="responsibilities">🛠 Responsibilities<a class="headerlink" href="#responsibilities" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Each service writes events to a <strong>local outbox table</strong> within the same DB transaction as state changes.  </li>
-<li>A dispatcher process drains the outbox and publishes to the bus.  </li>
-<li>Batch size, concurrency, and backoff are configurable.  </li>
-<li>Exponential backoff with jitter on publish failures.  </li>
-<li>DLQ on repeated failures after <code>RETRY_MAX</code>.  </li>
-<li>Consumers are idempotent and dedupe events.  </li>
-<li>Provide metrics, retries, and dead-letter handling.</li>
-</ul>
-<hr />
-<h2 id="interfaces">🔌 Interfaces<a class="headerlink" href="#interfaces" title="Permanent link">&para;</a></h2>
-<h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Topics: <code>transfers.*</code>, <code>ledger.*</code>, <code>compliance.*</code>, <code>recon.*</code>  </li>
-<li>Envelope:<br />
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;eventId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;transfers.settled&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;occurredAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-08-26T10:15:01Z&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;transferId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tr_123&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></li>
-</ul>
-<h3 id="admin">Admin<a class="headerlink" href="#admin" title="Permanent link">&para;</a></h3>
-<ul>
-<li><code>GET /live</code>, <code>GET /ready</code>, <code>GET /metrics</code>, <code>GET /version</code></li>
-</ul>
-<hr />
-<h2 id="data-model">🗄 Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>outbox</code> (id, eventType, payload, state=PENDING|SENT|FAILED, createdAt, attempts, lastError?)  </li>
-<li><code>inbox</code> (for dedupe, optional: eventId, processedAt)  </li>
-</ul>
-<hr />
-<h2 id="sequence">📐 Sequence<a class="headerlink" href="#sequence" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>sequenceDiagram
-  participant S as Service
-  participant OB as Outbox
-  participant BUS as Event Bus
-  participant C as Consumer
+<h2 id="components-roles">Components &amp; Roles<a class="headerlink" href="#components-roles" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart LR
+  subgraph "Producer Service (e.g., CTS)"
+    A["Write Model / DB"]
+    O[("Outbox Table")]
+    D["Dispatcher Worker"]
+  end
 
-  S-&gt;&gt;OB: write state + event in txn
-  OB-&gt;&gt;BUS: dispatcher publishes
-  BUS--&gt;&gt;C: event delivered
-  C-&gt;&gt;C: idempotency check
-  C--&gt;&gt;BUS: ack</code></pre>
+  subgraph "Bus (SNS FIFO + SQS FIFO)"
+    T[["Topic: events.transfers (SNS FIFO)"]]
+    Q1[["Queue: gateway.usdc (SQS FIFO)"]]
+    Q2[["Queue: ledger.postings (SQS FIFO)"]]
+    Q3[["Queue: projections.timeline (SQS FIFO)"]]
+  end
+
+  subgraph "Consumers"
+    G["Gateway (USDC)"]
+    L["Ledger Service"]
+    P["Projection / Read Model"]
+    I[("Inbox Table for Dedupe")]
+  end
+
+  A --&gt; O
+  D --&gt; T
+  T --&gt; Q1 --&gt; G
+  T --&gt; Q2 --&gt; L
+  T --&gt; Q3 --&gt; P --&gt; I
+</code></pre>
 <hr />
-<h2 id="failure-modes">🚨 Failure Modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h2>
+<h2 id="happy-path-sequence">Happy Path Sequence<a class="headerlink" href="#happy-path-sequence" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>sequenceDiagram
+  autonumber
+  participant S as "Producer (CTS/API)"
+  participant DB as "Aurora (state + outbox)"
+  participant W as "Dispatcher"
+  participant SNS as "SNS FIFO Topic"
+  participant QG as "SQS FIFO (gateway.usdc)"
+  participant GW as "Consumer (Gateway USDC)"
+
+  S-&gt;&gt;DB: BEGIN → insert transfer + outbox(event=submitted.usdc) → COMMIT
+  Note over S,DB: State and event are now durable together
+  W-&gt;&gt;DB: select PENDING rows (FOR UPDATE SKIP LOCKED)
+  W-&gt;&gt;SNS: publish(event) {GroupId=transferId, DedupId=eventId}
+  W-&gt;&gt;DB: mark outbox row = SENT
+  SNS--&gt;&gt;QG: deliver copy
+  QG-&gt;&gt;GW: receive message
+  GW-&gt;&gt;GW: idempotency check (inbox by eventId)
+  GW-&gt;&gt;Rail: submit on USDC (side-effect)
+  GW--&gt;&gt;QG: delete/ack message
+  GW-&gt;&gt;SNS: emit events.transfers.accepted / settled (as producer)
+</code></pre>
+<p><strong>Arrow semantics</strong></p>
 <ul>
-<li><strong>Dispatcher crash</strong> → resume from last PENDING.  </li>
-<li><strong>Duplicate delivery</strong> → consumer dedupe by eventId.  </li>
-<li><strong>Bus outage</strong> → outbox backlog grows, alert ops.  </li>
+<li><strong>Solid</strong> arrows = synchronous calls (DB, publish, ack).</li>
+<li><strong>Events</strong> flow via SNS/SQS FIFO; ordering per transfer enforced with <code>MessageGroupId = transferId</code>.</li>
 </ul>
 <hr />
-<h2 id="observability">📊 Observability<a class="headerlink" href="#observability" title="Permanent link">&para;</a></h2>
+<h2 id="data-shapes">Data Shapes<a class="headerlink" href="#data-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="event-envelope">Event envelope<a class="headerlink" href="#event-envelope" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;envelope&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;v&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;eventId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;occurredAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-08-26T10:15:01Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;tenantId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tnt_123&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;traceparent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;00-...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;events.transfers.submitted.usdc&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;transferId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tr_123&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;payload&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;100.00&quot;</span><span class="p">,</span><span class="nt">&quot;currency&quot;</span><span class="p">:</span><span class="s2">&quot;USD&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;payer&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;WALLET&quot;</span><span class="p">,</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;payer-abc&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;payee&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;WALLET&quot;</span><span class="p">,</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;0x...&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>Bus mapping:</strong> <code>MessageGroupId = key.transferId</code>, <code>MessageDeduplicationId = envelope.eventId</code>.</p>
+<h3 id="outbox-table-producer-db">Outbox table (producer DB)<a class="headerlink" href="#outbox-table-producer-db" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>eventType</th>
+<th>payload (JSONB)</th>
+<th>state</th>
+<th>attempts</th>
+<th>lastError</th>
+<th>next_attempt</th>
+<th>createdAt</th>
+<th>updatedAt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uuid</td>
+<td><code>events.transfers.submitted.usdc</code></td>
+<td><code>{envelope,key,payload}</code></td>
+<td>PENDING/SENT/FAILED</td>
+<td>int</td>
+<td>text</td>
+<td>ts</td>
+<td>ts</td>
+<td>ts</td>
+</tr>
+</tbody>
+</table>
+<h3 id="inbox-table-consumer-db-optional">Inbox table (consumer DB) — optional<a class="headerlink" href="#inbox-table-consumer-db-optional" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>eventId (PK)</th>
+<th>processedAt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uuid</td>
+<td>ts</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="failure-retry-semantics">Failure &amp; Retry Semantics<a class="headerlink" href="#failure-retry-semantics" title="Permanent link">&para;</a></h2>
+<h3 id="producerdispatcher">Producer/Dispatcher<a class="headerlink" href="#producerdispatcher" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+  autonumber
+  participant W as "Dispatcher"
+  participant DB as "Outbox"
+  participant SNS as "SNS"
+
+  W-&gt;&gt;DB: fetch PENDING (batch)
+  W-&gt;&gt;SNS: publish
+  alt publish error
+    W-&gt;&gt;DB: attempts++ , state=PENDING , next_attempt = now + backoff
+  else attempts &gt;= RETRY_MAX
+    W-&gt;&gt;DB: state=FAILED , lastError
+  end
+</code></pre>
+<h3 id="consumer">Consumer<a class="headerlink" href="#consumer" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart LR
+  M["Message from SQS FIFO"] --&gt; C{"Seen before? (inbox by eventId)"}
+  C -- "Yes" --&gt; A["Ack/Delete"]
+  C -- "No" --&gt; H["Handle side-effect"]
+  H --&gt; R{"Success?"}
+  R -- "Yes" --&gt; I["Insert inbox row"] --&gt; A
+  R -- "No" --&gt; E["Throw / do not ack; SQS retries → DLQ"]
+</code></pre>
+<hr />
+<h2 id="exactly-once-boundary-responsibilities">Exactly-once boundary &amp; responsibilities<a class="headerlink" href="#exactly-once-boundary-responsibilities" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Metrics: </li>
-<li><code>event_outbox_backlog{service}</code>  </li>
-<li><code>event_publish_lag_seconds{service}</code>  </li>
-<li><code>event_consumer_lag_seconds{service,topic}</code>  </li>
-<li>Logs: structured with eventId, transferId.  </li>
-<li>Alerts: backlog &gt; SLA.</li>
+<li><strong>Producer</strong>: guarantees each event is <strong>published once or fails visible</strong> (SENT/FAILED). No duplicates marked SENT.</li>
+<li><strong>Bus</strong>: may deliver duplicates or retries (at-least-once).</li>
+<li><strong>Consumer</strong>: must be idempotent; dedupe via <strong>inbox table</strong> (or idempotent upsert by domain key).</li>
 </ul>
 <hr />
-<h2 id="security">🔐 Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>
+<h2 id="how-other-components-use-it">How other components use it<a class="headerlink" href="#how-other-components-use-it" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>CTS → Gateway(USDC)</strong>: Gateway subscribes to <code>gateway.usdc</code> queue, dedupes, submits to AVAX, then emits <code>accepted/settled</code>.</li>
+<li><strong>Gateway → CTS</strong>: CTS inbound consumer updates transfer state and timeline.</li>
+<li><strong>CTS → Ledger</strong>: Ledger subscribes; posts journal entries idempotently by <code>(transferId,type)</code>.</li>
+<li><strong>CTS → Projections</strong>: updates read models for dashboards/webhooks.</li>
+<li><strong>Directory → CTS</strong>: publishes <code>directory.route.updated</code>; CTS invalidates route cache.</li>
+</ol>
+<hr />
+<h2 id="operational-defaults-adopt-now">Operational defaults (adopt now)<a class="headerlink" href="#operational-defaults-adopt-now" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Encrypt outbox payloads at rest if PII present.  </li>
-<li>Access controls on bus topics.  </li>
+<li><strong>Dispatcher</strong>: batch=50, concurrency=10; backoff: <code>1s,5s,30s,2m,10m,1h</code>; RETRY_MAX=10.</li>
+<li><strong>SQS visibility timeout</strong>: ≥ 2× handler p99.</li>
+<li><strong>Alarms</strong>: <code>event_outbox_backlog</code>, <code>event_publish_lag_seconds</code>, <code>dead_letter_count</code>, <code>event_consumer_lag_seconds</code>.</li>
 </ul>
 <hr />
-<h2 id="runbooks">🧭 Runbooks<a class="headerlink" href="#runbooks" title="Permanent link">&para;</a></h2>
+<h2 id="wire-test-localcloud-sanity-checks">Wire Test (local/cloud sanity checks)<a class="headerlink" href="#wire-test-localcloud-sanity-checks" title="Permanent link">&para;</a></h2>
+<h3 id="1-sql-outbox-schema-seed">1) SQL — Outbox schema &amp; seed<a class="headerlink" href="#1-sql-outbox-schema-seed" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">outbox</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="n">uuid</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">  </span><span class="n">eventType</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="n">payload</span><span class="w"> </span><span class="n">jsonb</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">  </span><span class="k">state</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;PENDING&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">attempts</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="n">lastError</span><span class="w"> </span><span class="nb">text</span><span class="p">,</span>
+<span class="w">  </span><span class="n">next_attempt</span><span class="w"> </span><span class="n">timestamptz</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">now</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">createdAt</span><span class="w"> </span><span class="n">timestamptz</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">now</span><span class="p">(),</span>
+<span class="w">  </span><span class="n">updatedAt</span><span class="w"> </span><span class="n">timestamptz</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">now</span><span class="p">()</span>
+<span class="p">);</span>
+
+<span class="c1">-- Insert a fake submitted.usdc event</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">outbox</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">eventType</span><span class="p">,</span><span class="w"> </span><span class="n">payload</span><span class="p">)</span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span>
+<span class="w">  </span><span class="n">gen_random_uuid</span><span class="p">(),</span>
+<span class="w">  </span><span class="s1">&#39;events.transfers.submitted.usdc&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">jsonb_build_object</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;envelope&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">jsonb_build_object</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;eventId&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">gen_random_uuid</span><span class="p">()::</span><span class="nb">text</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;occurredAt&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">now</span><span class="p">(),</span><span class="w"> </span><span class="s1">&#39;tenantId&#39;</span><span class="p">,</span><span class="s1">&#39;tnt_demo&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;events.transfers.submitted.usdc&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="s1">&#39;key&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">jsonb_build_object</span><span class="p">(</span><span class="s1">&#39;transferId&#39;</span><span class="p">,</span><span class="s1">&#39;tr_test_123&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="s1">&#39;payload&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">jsonb_build_object</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">jsonb_build_object</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span><span class="s1">&#39;10.00&#39;</span><span class="p">,</span><span class="s1">&#39;currency&#39;</span><span class="p">,</span><span class="s1">&#39;USD&#39;</span><span class="p">))</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="2-aws-cli-bus-quick-setup-example">2) AWS CLI — Bus quick setup (example)<a class="headerlink" href="#2-aws-cli-bus-quick-setup-example" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create SNS FIFO topic</span>
+aws<span class="w"> </span>sns<span class="w"> </span>create-topic<span class="w"> </span>--name<span class="w"> </span>events.transfers.fifo<span class="w"> </span>--attributes<span class="w"> </span><span class="nv">FifoTopic</span><span class="o">=</span>true,ContentBasedDeduplication<span class="o">=</span><span class="nb">false</span>
+
+<span class="c1"># Create SQS FIFO queue for gateway</span>
+aws<span class="w"> </span>sqs<span class="w"> </span>create-queue<span class="w"> </span>--queue-name<span class="w"> </span>gateway.usdc.fifo<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--attributes<span class="w"> </span><span class="nv">FifoQueue</span><span class="o">=</span>true,ContentBasedDeduplication<span class="o">=</span>false,VisibilityTimeout<span class="o">=</span><span class="m">60</span>
+
+<span class="c1"># Subscribe queue to topic</span>
+aws<span class="w"> </span>sns<span class="w"> </span>subscribe<span class="w"> </span>--topic-arn<span class="w"> </span>&lt;SNS_ARN&gt;<span class="w"> </span>--protocol<span class="w"> </span>sqs<span class="w"> </span>--notification-endpoint<span class="w"> </span>&lt;SQS_ARN&gt;
+
+<span class="c1"># Allow SNS to publish to SQS (set queue policy accordingly)</span>
+</code></pre></div>
+<h3 id="3-dispatcher-mock-python">3) Dispatcher mock (Python)<a class="headerlink" href="#3-dispatcher-mock-python" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">uuid</span><span class="o">,</span><span class="w"> </span><span class="nn">psycopg2</span><span class="o">,</span><span class="w"> </span><span class="nn">boto3</span>
+
+<span class="n">SNS_ARN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SNS_ARN&#39;</span><span class="p">]</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PG_DSN&#39;</span><span class="p">])</span>
+<span class="n">sns</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;sns&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;AWS_REGION&#39;</span><span class="p">,</span><span class="s1">&#39;us-east-1&#39;</span><span class="p">))</span>
+
+<span class="n">BACKOFF</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">3600</span><span class="p">]</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">conn</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">          SELECT id, payload</span><span class="se">\n</span><span class="s2">          FROM outbox</span><span class="se">\n</span><span class="s2">          WHERE state=&#39;PENDING&#39; AND next_attempt &lt;= now()</span><span class="se">\n</span><span class="s2">          ORDER BY createdAt</span><span class="se">\n</span><span class="s2">          FOR UPDATE SKIP LOCKED</span><span class="se">\n</span><span class="s2">          LIMIT 50</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">oid</span><span class="p">,</span> <span class="n">payload</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="n">env</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;envelope&#39;</span><span class="p">]</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">sns</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span>
+                  <span class="n">TopicArn</span><span class="o">=</span><span class="n">SNS_ARN</span><span class="p">,</span>
+                  <span class="n">Message</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span>
+                  <span class="n">MessageGroupId</span><span class="o">=</span><span class="n">key</span><span class="p">[</span><span class="s1">&#39;transferId&#39;</span><span class="p">],</span>
+                  <span class="n">MessageDeduplicationId</span><span class="o">=</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;eventId&#39;</span><span class="p">]</span>
+                <span class="p">)</span>
+                <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;UPDATE outbox SET state=&#39;SENT&#39;, attempts=attempts+1, updatedAt=now() WHERE id=</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">oid</span><span class="p">,))</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                  UPDATE outbox</span>
+<span class="s2">                     SET attempts=attempts+1,</span>
+<span class="s2">                         lastError=</span><span class="si">%s</span><span class="s2">,</span>
+<span class="s2">                         next_attempt=now() + make_interval(secs =&gt; </span><span class="si">%s</span><span class="s2">),</span>
+<span class="s2">                         updatedAt=now(),</span>
+<span class="s2">                         state = CASE WHEN attempts &gt;= 10 THEN &#39;FAILED&#39; ELSE &#39;PENDING&#39; END</span>
+<span class="s2">                   WHERE id=</span><span class="si">%s</span>
+<span class="s2">                &quot;&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">BACKOFF</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">BACKOFF</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span> <span class="n">oid</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="4-consumer-mock-python">4) Consumer mock (Python)<a class="headerlink" href="#4-consumer-mock-python" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">boto3</span><span class="o">,</span><span class="w"> </span><span class="nn">datetime</span>
+
+<span class="n">sqs</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;sqs&#39;</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;AWS_REGION&#39;</span><span class="p">,</span><span class="s1">&#39;us-east-1&#39;</span><span class="p">))</span>
+<span class="n">QUEUE_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;QUEUE_URL&#39;</span><span class="p">]</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">sqs</span><span class="o">.</span><span class="n">receive_message</span><span class="p">(</span><span class="n">QueueUrl</span><span class="o">=</span><span class="n">QUEUE_URL</span><span class="p">,</span> <span class="n">MaxNumberOfMessages</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">WaitTimeSeconds</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">resp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Messages&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s1">&#39;Body&#39;</span><span class="p">])</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Message&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">))</span>
+        <span class="n">evt</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;envelope&#39;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Got event&#39;</span><span class="p">,</span> <span class="n">evt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">),</span> <span class="n">evt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;eventId&#39;</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span>
+        <span class="c1"># TODO: dedupe check by eventId in inbox table</span>
+        <span class="n">sqs</span><span class="o">.</span><span class="n">delete_message</span><span class="p">(</span><span class="n">QueueUrl</span><span class="o">=</span><span class="n">QUEUE_URL</span><span class="p">,</span> <span class="n">ReceiptHandle</span><span class="o">=</span><span class="n">m</span><span class="p">[</span><span class="s1">&#39;ReceiptHandle&#39;</span><span class="p">])</span>
+</code></pre></div>
+<blockquote>
+<p>These mocks are for wiring/visibility; production code should use a proper worker framework, metrics, and inbox dedupe.</p>
+</blockquote>
+<hr />
+<h2 id="runbooks-condensed">Runbooks (condensed)<a class="headerlink" href="#runbooks-condensed" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Backlog spike</strong> → check bus health, dispatcher logs.  </li>
-<li><strong>Consumer lag</strong> → verify consumer ack logic.  </li>
-<li><strong>Duplicate flood</strong> → inspect dedupe store.  </li>
+<li><strong>Outbox backlog rising</strong> → check dispatcher logs; SNS/SQS publish errors; scale workers; review DLQ.</li>
+<li><strong>Consumer lag rising</strong> → scale consumers; increase visibility timeout; profile handler.</li>
+<li><strong>Duplicate effects</strong> → ensure inbox/dedupe; verify <code>MessageGroupId</code>/<code>DeduplicationId</code> mapping.</li>
+<li><strong>FAILED outbox rows</strong> → fix cause; re-drive by <code>eventId</code> using admin tool.</li>
 </ul>
 <hr />
+<h2 id="security-pii">Security &amp; PII<a class="headerlink" href="#security-pii" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Events contain IDs, not PII. Outbox payloads are encrypted at rest.</li>
+<li>IAM: producer can publish to the topic; consumers can read only their queues.</li>
+</ul>
 
 
 
